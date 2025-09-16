@@ -1,0 +1,6 @@
+@use './colors.scss';
+
+.mui-link {
+  text-decoration: none;
+  color: colors.$mui-secondary-400;
+}

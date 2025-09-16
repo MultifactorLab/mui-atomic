@@ -1,0 +1,15 @@
+<div class="pagination-left mui-flex mui-align-items-center">
+  Записей на странице
+  <mui-select
+    class="mui-mx-2"
+    heightStyle="half-size"
+    (onSelectedItemChange)="setPageSize($event)"
+    [currentSelectedItem]="defaultPageSize"
+    [options]="pageSizes"
+  ></mui-select>
+</div>
+<div class="pagination-right mui-flex mui-align-items-center">
+  Страница {{ currentPage }} из {{ totalPages }}
+  <mui-prev-icon (click)="goPrevPage()" class="mui-mx-2"></mui-prev-icon>
+  <mui-next-icon (click)="goNextPage()" class="mui-mx-2"></mui-next-icon>
+</div>

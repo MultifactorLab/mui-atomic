@@ -1,0 +1,14 @@
+@if(placeholderOnTop) {
+  <label for="{{name}}">{{placeholder}}</label>
+}
+<input
+  [ngClass]="{'indent-normal': padding === 'normal', 'indent-with-icon': padding === 'with-icon'}"
+  type="text"
+  [disabled]="disabled"
+  [(ngModel)]="value"
+  (blur)="onBlur()"
+  (focus)="onFocus()"
+  #input
+  tabindex="0"
+  [placeholder]="placeholderOnTop ? '' : placeholder"
+/>

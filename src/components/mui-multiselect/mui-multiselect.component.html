@@ -1,0 +1,17 @@
+<div #selectContainer class="mui-flex mui-flex-column">
+  <span class="title">{{ title() }}</span>
+  <select class="mui-my-half" (mousedown)="$event.preventDefault()" (click)="togglePanelVisibility()" name="select">
+    <option value="header" selected>{{ placeholder }}</option>
+  </select>
+
+  @if (selectMenuVisible()) {
+    <div class="options-list-container" [class.rotated-panel-container]="showPanelOnTop">
+      <div class="options-list mui-flex mui-flex-column">
+        @for (item of options(); track item.id) {
+          <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
+          </mui-select-option>
+        }
+      </div>
+    </div>
+  }
+</div>

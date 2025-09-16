@@ -1,0 +1,82 @@
+// 1em = 16px
+
+$mui-half-block: 0.25em;
+$mui-full-block: 0.5em;
+$mui-block-sizes: (
+  'half': $mui-half-block,
+  '0': 0,
+  '1': $mui-full-block,
+  '2': $mui-full-block * 2,
+  '3': $mui-full-block * 3,
+  '4': $mui-full-block * 4,
+  '5': $mui-full-block * 5,
+  '6': $mui-full-block * 6,
+  '7': $mui-full-block * 7,
+  '8': $mui-full-block * 8,
+  '9': $mui-full-block * 9,
+  '10': $mui-full-block * 10
+);
+$mui-half-block-sizes: (
+  '1': $mui-half-block,
+  '2': $mui-half-block * 2,
+  '3': $mui-half-block * 3,
+  '4': $mui-half-block * 4,
+  '5': $mui-half-block * 5,
+  '6': $mui-half-block * 6,
+  '7': $mui-half-block * 7,
+  '8': $mui-half-block * 8,
+  '9': $mui-half-block * 9,
+  '10': $mui-half-block * 10,
+  '11': $mui-half-block * 11,
+  '12': $mui-half-block * 12,
+  '13': $mui-half-block * 13,
+  '14': $mui-half-block * 14,
+  '15': $mui-half-block * 15
+);
+
+@each $code, $size in $mui-block-sizes {
+  .mui-my-#{$code} {
+    margin-top: $size;
+    margin-bottom: $size;
+  }
+
+  .mui-mx-#{$code} {
+    margin-left: $size;
+    margin-right: $size;
+  }
+
+  .mui-mt-#{$code} {
+    margin-top: $size;
+  }
+
+  .mui-mb-#{$code} {
+    margin-bottom: $size;
+  }
+
+  .mui-pad-#{$code} {
+    padding: $size;
+  }
+  .mui-px-#{$code} {
+    padding: 0 $size;
+  }
+
+  .mui-py-#{$code} {
+    padding: $size 0;
+  }
+
+  .mui-pl-#{$code} {
+    padding-left: $size;
+  }
+
+  .mui-pr-#{$code} {
+    padding-right: $size;
+  }
+
+  .mui-gap-#{$code} {
+    gap: $size;
+  }
+
+  .mui-p-block-start-#{$code} {
+    padding-block-start: $size;
+  }
+}

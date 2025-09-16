@@ -1,0 +1,14 @@
+@use '../../../../styles/mui-core/theme/colors';
+@use '../../../../styles/mui-core/spaces/config';
+@use 'sass:map';
+
+:host {
+  display: flex;
+  min-height: map.get(config.$mui-block-sizes, '6');
+  cursor: pointer;
+  font-size: 0.9375em;
+  overflow-wrap: anywhere;
+  &:hover {
+    background-color: colors.$mui-primary-300;
+  }
+}

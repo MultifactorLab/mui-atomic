@@ -1,0 +1,74 @@
+@use '../../../../styles/mui-core/theme/colors';
+@use '../../../../styles/mui-core/spaces/config';
+@use 'sass:map';
+
+select {
+  max-width: 300px;
+  font-size: 1em;
+  appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><path d='M24.7602 13.4232L16.5788 21.7556C16.5029 21.8331 16.4126 21.8946 16.3133 21.9365C16.214 21.9784 16.1075 22 16 22C15.8925 22 15.786 21.9784 15.6867 21.9365C15.5874 21.8946 15.4971 21.8331 15.4212 21.7556L7.23976 13.4232C7.08624 13.2669 7 13.0548 7 12.8337C7 12.6126 7.08624 12.4005 7.23976 12.2442C7.39328 12.0878 7.60149 12 7.8186 12C8.0357 12 8.24391 12.0878 8.39743 12.2442L16 19.9881L23.6026 12.2442C23.6786 12.1668 23.7688 12.1054 23.8681 12.0635C23.9675 12.0216 24.0739 12 24.1814 12C24.2889 12 24.3953 12.0216 24.4947 12.0635C24.594 12.1054 24.6842 12.1668 24.7602 12.2442C24.8363 12.3216 24.8965 12.4135 24.9377 12.5147C24.9788 12.6158 25 12.7242 25 12.8337C25 12.9432 24.9788 13.0516 24.9377 13.1527C24.8965 13.2539 24.8363 13.3458 24.7602 13.4232Z'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 99%;
+  line-height: 19.2px;
+  padding: 0 10px;
+  color: colors.$mui-gray-accent;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  font-family: Inter, sans-serif;
+
+  &:focus-visible {
+    border: 1px solid colors.$mui-primary-400;
+  }
+
+  &::placeholder {
+    font-size: 1em;
+    line-height: 19.2px;
+    color: colors.$mui-gray-accent;
+  }
+
+  &.height {
+    &-normal {
+      height: map.get(config.$mui-half-block-sizes, '13');
+      background-position-y: map.get(config.$mui-half-block-sizes, '3');
+    }
+
+    &-half-size {
+      height: map.get(config.$mui-half-block-sizes, '9');
+      background-position-y: config.$mui-half-block;
+    }
+  }
+}
+
+.title {
+  color: colors.$mui-primary-700;
+}
+
+.options-list {
+  position: absolute;
+  border: 1px solid #ced4da;
+  border-radius: 0.25em;
+  background-color: white;
+  width: 100%;
+  max-width: 350px;
+  overflow: auto;
+  max-height: 300px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+
+  &-container {
+    position: relative;
+  }
+}
+
+.rotated {
+  transform: rotate(180deg);
+
+  &-panel-container {
+    transform: rotate(180deg) translateY(2.75em);
+  }
+}

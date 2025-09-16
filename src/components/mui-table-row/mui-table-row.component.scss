@@ -1,0 +1,35 @@
+@use '../../../../styles/mui-core/theme/colors';
+@use '../../../../styles/mui-core/spaces/config';
+@use 'sass:map';
+
+:host {
+  inline-size: 100%;
+}
+
+.row-container {
+  display: flex;
+  vertical-align: middle;
+  min-height: map.get(config.$mui-block-sizes, '6');
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:not(.header-row) {
+    border-top: 1px solid rgb(0 0 0 / 6.25%);
+  }
+
+  &:hover:not(.header-row) {
+    background-color: colors.$mui-primary-100;
+  }
+}
+
+.nested {
+  &-level-1 {
+    background-color: colors.$mui-primary-200;
+  }
+
+  &-level-2 {
+    background-color: colors.$mui-primary-300;
+  }
+}

@@ -1,0 +1,38 @@
+@use '../../../../styles/mui-core/theme/colors';
+
+.datepicker-placeholder {
+  color: colors.$mui-primary-700;
+}
+
+.d-error {
+  font-size: 13px;
+  color: red;
+}
+
+input {
+  max-width: 200px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 19.2px;
+  padding: 0 10px;
+  color: colors.$mui-gray-accent;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-family: "Inter", sans-serif;
+  &:focus-visible {
+    border: 1px solid colors.$mui-primary-400;
+  }
+  &::placeholder {
+    font-size: 16px;
+    line-height: 19.2px;
+    color: colors.$mui-gray-accent;
+  }
+  &::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: colors.$mui-primary-400;
+  }
+}

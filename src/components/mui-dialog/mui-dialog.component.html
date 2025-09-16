@@ -1,0 +1,17 @@
+<div class="mui-dialog-container" [ngStyle]="{'display': isOpened ? 'block' : 'none'}">
+  <div class="mui-dialog-content-container">
+    <div class="mui-flex mui-flex-row mui-align-items-center mui-justify-content-between">
+      <div class="mui-dialog-title">
+        {{title}}
+      </div>
+      @if (showCloseButton) {
+        <div class="mui-dialog-close-btn">
+          <mui-close-icon (click)="close()"></mui-close-icon>
+        </div>
+      }
+    </div>
+    <div class="mui-dialog-content-body">
+      <ng-container *ngComponentOutlet="component" />
+    </div>
+  </div>
+</div>

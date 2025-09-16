@@ -1,0 +1,10 @@
+@use '../../../../styles/mui-core/theme/colors';
+
+:host {
+  min-height: 48px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: colors.$mui-secondary-900;
+}

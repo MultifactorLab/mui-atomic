@@ -1,0 +1,10 @@
+<div class="mui-card-layout mui-flex-column w-100"
+     [ngStyle]="{'max-width.px' : maxWidth}"
+     [ngClass]="{
+      'card-background-dark': background === 'dark',
+      'card-background-light': background === 'light',
+      'card-background-empty': background === 'empty',
+     }"
+>
+  <ng-content></ng-content>
+</div>

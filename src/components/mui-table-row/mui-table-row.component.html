@@ -1,0 +1,16 @@
+<div class="row-container" [ngClass]="nestedLevelClass">
+  @for (cell of cells; track cell.id; let i = $index) {
+    <mui-table-cell [ngStyle]="{ 'max-width.px': columnConfig[i].maxWidth || 'unset' }">
+      @if (isBadgeCell(cell)) {
+        <mui-badge [style]="getBadgeCellStyle(cell)" [text]="cell.content!"></mui-badge>
+      }
+      @if (isTextCell(cell)) {
+        {{ cell.content }}
+      }
+    </mui-table-cell>
+  }
+</div>
+
+<div class="nested-content-container">
+  <ng-content></ng-content>
+</div>

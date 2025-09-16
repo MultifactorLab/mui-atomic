@@ -1,0 +1,9 @@
+<div class="mui-flex mui-flex-column">
+  <div>
+    {{text}}
+  </div>
+  <div class="mui-flex mui-flex-row mui-justify-content-between">
+    <mui-button [size]="'xs'" (click)="reject()" [buttonStyle]="rejectButtonStyle">{{rejectButtonText}}</mui-button>
+    <mui-button class="mui-pl-2" (click)="confirm()" [size]="'xs'" [buttonStyle]="acceptButtonStyle">{{acceptButtonText}}</mui-button>
+  </div>
+</div>

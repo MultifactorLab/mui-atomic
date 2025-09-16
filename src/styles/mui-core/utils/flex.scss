@@ -1,0 +1,36 @@
+.mui-flex {
+  display: flex;
+  &-column {
+    flex-direction: column;
+  }
+  &-row {
+    flex-direction: row;
+  }
+}
+
+.mui-justify-content {
+  &-center {
+    justify-content: center;
+  }
+  &-between {
+    justify-content: space-between;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+}
+
+.mui-align-items {
+  &-center {
+    align-items: center;
+  }
+  &-end {
+    align-items: end;
+  }
+}
+
+.mui-align-self {
+  &-center {
+    align-self: center;
+  }
+}
