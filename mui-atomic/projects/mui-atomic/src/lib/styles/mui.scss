@@ -1,4 +1,4 @@
-@use 'theme/theme';
-@use 'utils/flex';
-@use 'spaces/config';
-@use 'theme/colors';
+@forward 'theme/theme';
+@forward 'utils/flex';
+@forward 'spaces/config';
+@forward 'theme/colors';
