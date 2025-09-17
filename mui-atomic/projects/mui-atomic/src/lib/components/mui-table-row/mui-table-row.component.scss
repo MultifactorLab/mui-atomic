@@ -1,5 +1,5 @@
-@use '../../styles/theme/colors';
-@use '../../styles/spaces/config';
+@use '../../../../styles/mui-core/theme/colors';
+@use '../../../../styles/mui-core/spaces/config';
 @use 'sass:map';
 
 :host {
@@ -31,5 +31,37 @@
 
   &-level-2 {
     background-color: colors.$mui-primary-300;
+  }
+}
+
+.offest-row {
+  margin-inline-start: 2.5em;
+}
+
+.icon {
+  inline-size: 2.15em;
+  block-size: 2.15em;
+  margin-inline-end: 0.5em;
+  transform: rotate(-90deg);
+  transition: transform 0.3s ease-out;
+
+  &-rotated {
+    transform: rotate(0deg);
+  }
+}
+
+.nested-content-container {
+  animation: fade-in 0.3s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

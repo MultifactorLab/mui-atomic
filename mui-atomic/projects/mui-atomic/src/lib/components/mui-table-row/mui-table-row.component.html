@@ -1,6 +1,13 @@
 <div class="row-container" [ngClass]="nestedLevelClass">
+  @if (canExpand && !isHeaderRow) {
+    <mui-chevron-icon class="icon" [class.icon-rotated]="opened()"></mui-chevron-icon>
+  }
+
   @for (cell of cells; track cell.id; let i = $index) {
-    <mui-table-cell [ngStyle]="{ 'max-width.px': columnConfig[i].maxWidth || 'unset' }">
+    <mui-table-cell
+      [ngStyle]="{ 'max-width.px': columnConfig[i].maxWidth || 'unset' }"
+      [class.offest-row]="(canExpand && isHeaderRow && i === 0) || (nestedLevel === 2 && i === 0)"
+    >
       @if (isBadgeCell(cell)) {
         <mui-badge [style]="getBadgeCellStyle(cell)" [text]="cell.content!"></mui-badge>
       }
@@ -11,6 +18,8 @@
   }
 </div>
 
-<div class="nested-content-container">
-  <ng-content></ng-content>
-</div>
+@if (opened()) {
+  <div class="nested-content-container">
+    <ng-content></ng-content>
+  </div>
+}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MuiSvgIconComponent } from '../../mui-svg-icon-component/mui-svg-icon-component.component';
 
 @Component({
   selector: 'mui-info-icon',
@@ -15,4 +14,4 @@ import { MuiSvgIconComponent } from '../../mui-svg-icon-component/mui-svg-icon-c
     </svg>
   `
 })
-export class InfoMuiIconComponent extends MuiSvgIconComponent {}
+export class InfoMuiIconComponent {}

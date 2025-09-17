@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
 import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
 import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
-import { NgStyle, NgClass } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
+import { ChevronMuiIconComponent } from '../mui-icon/items/chevron.mui-icon';
 
 export type RowIndex = {
   prefix: number;
@@ -16,27 +17,35 @@ export type NestedLevel = 0 | 1 | 2;
   selector: 'mui-table-row',
   standalone: true,
   templateUrl: './mui-table-row.component.html',
-  imports: [MuiTableCellComponent, NgStyle, MuiBadgeComponent, NgClass],
-  styleUrl: './mui-table-row.component.scss',
+  imports: [MuiTableCellComponent, NgStyle, MuiBadgeComponent, NgClass, ChevronMuiIconComponent],
+  styleUrl: './mui-table-row.component.scss'
 })
 export class MuiTableRowComponent implements OnInit {
+  @Input() canExpand = false;
   @Input() source!: any;
   @Input() isHeaderRow = false;
-  @Input() rowIndex: RowIndex = { prefix: 0 };
+  @Input() rowIndex: RowIndex | null = null;
   @Input() itemsOnPage: number = 0;
   @Input() currentPage: number = 1;
   @Input() columnConfig: MuiTableColumnDefinition[] = [];
   @Input() nestedLevel: NestedLevel = 0;
+  @Output() onRowClick: EventEmitter<any> = new EventEmitter();
 
+  protected opened: WritableSignal<boolean> = signal<boolean>(false);
+  protected cells: MuiTableCell[] = [];
   private readonly levelClassMap: Record<NestedLevel, string> = {
     0: '',
     1: 'nested-level-1',
-    2: 'nested-level-2',
+    2: 'nested-level-2'
   };
 
-  @Output() onRowClick: EventEmitter<any> = new EventEmitter();
-
-  protected cells: MuiTableCell[] = [];
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent) {
+    if (this.canExpand) {
+      event.stopPropagation();
+      this.opened.update(prev => !prev);
+    }
+  }
 
   ngOnInit() {
     if (this.isHeaderRow) {
@@ -90,6 +99,8 @@ export class MuiTableRowComponent implements OnInit {
   }
 
   private getPageIndex() {
+    if (this.rowIndex === null) return '';
+
     const decimal = (this.currentPage - 1) * this.itemsOnPage;
     const normalizedIndex = this.rowIndex.prefix + 1;
     const itemNumber = normalizedIndex === this.itemsOnPage ? normalizedIndex : normalizedIndex % this.itemsOnPage;

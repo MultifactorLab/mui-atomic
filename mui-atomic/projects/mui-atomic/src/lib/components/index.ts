@@ -24,3 +24,4 @@ export * from './mui-table-cell/mui-table-cell';
 export * from './mui-table-head/mui-table-head.component';
 export * from './mui-table-row/mui-table-row.component';
 export * from './mui-textbox/mui-textbox.component';
+export * from './mui-icon/index';
