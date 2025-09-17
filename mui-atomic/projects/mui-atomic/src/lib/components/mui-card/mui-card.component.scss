@@ -1,0 +1,20 @@
+@use '../../styles/theme/colors';
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.mui-card-layout {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.card-background- {
+  &dark {
+    background-color: colors.$mui-low;
+  }
+  &light {
+    background-color: colors.$mui-primary-50;
+  }
+}

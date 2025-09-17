@@ -1,0 +1,25 @@
+{
+  "name": "mui-atomic",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "moment": "^2.30.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./lib/styles/mui.scss"
+    },
+    "./spaces": {
+      "sass": "./lib/styles/spaces/config.scss"
+    },
+    "./flex": {
+      "sass": "./lib/styles/utils/flex.scss"
+    }
+  }
+}

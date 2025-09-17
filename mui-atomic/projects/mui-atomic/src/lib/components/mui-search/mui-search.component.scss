@@ -1,0 +1,35 @@
+@use '../../styles/theme/colors';
+@use '../../styles/spaces/config';
+@use "sass:map";
+
+.icon-inside-input {
+  position: absolute;
+  left: map.get(config.$mui-block-sizes, '2');
+  width: map.get(config.$mui-block-sizes, '3');
+
+  svg {
+    path {
+      fill: colors.$mui-gray-accent;
+      opacity: 1;
+    }
+  }
+}
+
+.input-with-icon {
+  width: 100%;
+  padding-left: config.$mui-half-block;
+  &-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+}
+
+.icon-inside-input > svg > path {
+  fill: colors.$mui-gray-accent;
+}
+
+mui-textbox > input {
+  text-indent: 40px;
+}
+

@@ -1,0 +1,8 @@
+@use '../../styles/theme/colors';
+
+:host {
+  display: table-row-group;
+  vertical-align: middle;
+  font-size: 0.9375em;
+  color: colors.$mui-black-light;
+}

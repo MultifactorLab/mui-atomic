@@ -1,0 +1,38 @@
+@use '../../styles/spaces/config';
+@use '../../styles/theme/colors';
+@use 'sass:map';
+
+.mui-dialog- {
+  &title {
+    font-size: map.get(config.$mui-block-sizes, '3');
+    font-weight: bold;
+  }
+  &container {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  &content-{
+    &container {
+      border-radius: config.$mui-full-block;
+      width: fit-content;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      padding: map.get(config.$mui-block-sizes, '3');
+      max-height: fit-content;
+      background-color: colors.$white;
+    }
+    &body {
+      padding-top: map.get(config.$mui-block-sizes, '4');
+    }
+  }
+}
