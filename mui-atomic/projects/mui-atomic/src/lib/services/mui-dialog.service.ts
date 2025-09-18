@@ -1,14 +1,13 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {MuiDialogComponent} from './mui-dialog.component';
-import {MuiDialogParams} from './mui-dialog.params';
-import {Observable, take} from 'rxjs';
-import {MuiDialogResult} from './mui-dialog.types';
+import { Injectable, OnDestroy } from '@angular/core';
+import { MuiDialogComponent } from 'mui-atomic';
+import { Observable, take } from 'rxjs';
+import { MuiDialogParams } from '../components/mui-dialog/mui-dialog.params';
+import { MuiDialogResult } from '../components/mui-dialog/mui-dialog.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MuiDialogService implements OnDestroy {
-
   private _instance: MuiDialogComponent<any> | null = null;
 
   private assertDialogInstance(instance: MuiDialogComponent<any> | null) {
