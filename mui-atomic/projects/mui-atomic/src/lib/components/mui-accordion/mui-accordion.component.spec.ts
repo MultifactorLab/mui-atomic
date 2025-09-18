@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MuiExpandComponent } from './mui-expand.component';
+import { MuiAccordionComponent } from './mui-accordion.component';
 
-describe('MuiExpandComponent', () => {
-  let component: MuiExpandComponent;
-  let fixture: ComponentFixture<MuiExpandComponent>;
+describe('MuiAccordionComponent', () => {
+  let component: MuiAccordionComponent;
+  let fixture: ComponentFixture<MuiAccordionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MuiExpandComponent]
+      imports: [MuiAccordionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MuiExpandComponent);
+    fixture = TestBed.createComponent(MuiAccordionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

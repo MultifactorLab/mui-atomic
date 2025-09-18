@@ -15,13 +15,13 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "sass": "./lib/styles/mui.scss"
+      "sass": "./src/lib/styles/mui.scss"
     },
     "./spaces": {
-      "sass": "./lib/styles/spaces/config.scss"
+      "sass": "./src/lib/styles/spaces/config.scss"
     },
     "./flex": {
-      "sass": "./lib/styles/utils/flex.scss"
+      "sass": "./src/lib/styles/utils/flex.scss"
     }
   }
 }
