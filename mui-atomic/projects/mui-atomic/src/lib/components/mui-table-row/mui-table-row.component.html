@@ -4,10 +4,7 @@
   }
 
   @for (cell of cells; track cell.id; let i = $index) {
-    <mui-table-cell
-      [ngStyle]="{ 'max-width.px': columnConfig[i].maxWidth || 'unset' }"
-      [class.offest-row]="(canExpand && isHeaderRow && i === 0) || (nestedLevel === 2 && i === 0)"
-    >
+    <mui-table-cell [ngStyle]="{ 'max-width.px': columnConfig[i].maxWidth || 'unset' }" [class.offest-row]="needsMoveFirstCell(i)">
       @if (isBadgeCell(cell)) {
         <mui-badge [style]="getBadgeCellStyle(cell)" [text]="cell.content!"></mui-badge>
       }
