@@ -6,34 +6,76 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix .",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . -w",
+    "styles:check": "stylelint \"**/*.scss\"",
+    "styles:fix": "stylelint \"**/*.scss\" --fix"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^19.1.0",
-    "@angular/common": "^19.1.0",
-    "@angular/compiler": "^19.1.0",
-    "@angular/core": "^19.1.0",
-    "@angular/forms": "^19.1.0",
-    "@angular/platform-browser": "^19.1.0",
-    "@angular/platform-browser-dynamic": "^19.1.0",
-    "@angular/router": "^19.1.0",
+    "@angular/animations": "^20.3.0",
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/platform-browser-dynamic": "^20.3.0",
+    "@angular/router": "^20.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.16",
-    "@angular/cli": "^19.1.6",
-    "@angular/compiler-cli": "^19.1.0",
+    "@angular-devkit/build-angular": "^20.3.1",
+    "@angular-eslint/eslint-plugin": "^20.3.0",
+    "@angular/cli": "^20.3.1",
+    "@angular/compiler-cli": "^20.3.0",
+    "@eslint/compat": "^1.3.2",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.35.0",
+    "@stylistic/eslint-plugin": "^3.1.0",
     "@types/jasmine": "~5.1.0",
+    "angular-eslint": "^20.2.0",
+    "eslint": "^9.35.0",
+    "eslint-config-airbnb-extended": "^2.3.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-n": "^17.23.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-strict-null-checks": "^0.1.3",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^19.2.0",
-    "typescript": "~5.7.2"
+    "lint-staged": "^16.1.6",
+    "ng-packagr": "^20.3.0",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.24.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard": "^39.0.0",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.44.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix",
+      "prettier --write"
+    ]
   }
 }
