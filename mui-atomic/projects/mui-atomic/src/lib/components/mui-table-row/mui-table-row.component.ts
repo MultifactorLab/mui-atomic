@@ -111,10 +111,10 @@ export class MuiTableRowComponent implements OnInit {
   }
 
   protected needsMoveFirstCell(cellId: number): boolean {
-    const isHeaderWithAccrotionInTable = this.hasAccordionInTable && this.isHeaderRow && cellId === 0;
-    const isNestedRow = this.nestedLevel === 2 && cellId === 0;
+    const isHeaderWithAccrodionInTable = this.hasAccordionInTable && this.isHeaderRow && cellId === 0;
+    const rowNested = this.nestedLevel === 2 && cellId === 0;
     const isAccordionRow = this.hasAccordionInTable && !this.canExpand && cellId === 0;
 
-    return isAccordionRow || isHeaderWithAccrotionInTable || isNestedRow;
+    return isAccordionRow || isHeaderWithAccrodionInTable || rowNested;
   }
 }
