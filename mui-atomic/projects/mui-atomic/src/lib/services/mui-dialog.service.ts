@@ -1,8 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { MuiDialogComponent } from 'mui-atomic';
 import { Observable, take } from 'rxjs';
-import { MuiDialogParams } from '../components/mui-dialog/mui-dialog.params';
-import { MuiDialogResult } from '../components/mui-dialog/mui-dialog.types';
+import { MuiDialogComponent, MuiDialogParams, MuiDialogResult } from '../components';
 
 @Injectable({
   providedIn: 'root'
