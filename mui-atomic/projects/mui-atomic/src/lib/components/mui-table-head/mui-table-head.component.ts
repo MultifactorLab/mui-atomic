@@ -11,5 +11,5 @@ import { MuiTableRowComponent } from '../mui-table-row/mui-table-row.component';
 })
 export class MuiTableHeadComponent {
   @Input() columns: MuiTableColumnDefinition[] = [];
-  @Input() canExpand: boolean = false;
+  @Input() hasAccordionInTable: boolean = false;
 }

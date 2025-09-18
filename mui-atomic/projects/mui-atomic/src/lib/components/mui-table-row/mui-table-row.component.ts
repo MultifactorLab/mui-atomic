@@ -4,7 +4,7 @@ import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolv
 import { NgClass, NgStyle } from '@angular/common';
 import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
-import { ChevronMuiIconComponent } from '../mui-icon/items/chevron.mui-icon';
+import { ChevronMuiIconComponent } from '../mui-icon';
 
 export type RowIndex = {
   prefix: number;
@@ -22,6 +22,7 @@ export type NestedLevel = 0 | 1 | 2;
 })
 export class MuiTableRowComponent implements OnInit {
   @Input() canExpand = false;
+  @Input() hasAccordionInTable: boolean = false;
   @Input() source!: any;
   @Input() isHeaderRow = false;
   @Input() rowIndex: RowIndex | null = null;
@@ -107,5 +108,13 @@ export class MuiTableRowComponent implements OnInit {
     const pageIndex = decimal + itemNumber;
 
     return this.rowIndex.postfix ? `${pageIndex}${this.rowIndex.postfix}` : pageIndex;
+  }
+
+  protected needsMoveFirstCell(cellId: number): boolean {
+    const isHeaderWithAccrodionInTable = this.hasAccordionInTable && this.isHeaderRow && cellId === 0;
+    const rowNested = this.nestedLevel === 2 && cellId === 0;
+    const isAccordionRow = this.hasAccordionInTable && !this.canExpand && cellId === 0;
+
+    return isAccordionRow || isHeaderWithAccrodionInTable || rowNested;
   }
 }
