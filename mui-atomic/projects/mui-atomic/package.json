@@ -7,8 +7,7 @@
     "@angular/core": "^20.3.0",
     "moment": "^2.30.1"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "publishConfig": {
     "registry": "https://son.multifactor.dev:5443/repository/multifactor-npm/"
   },
@@ -22,6 +21,9 @@
     },
     "./flex": {
       "sass": "./src/lib/styles/utils/flex.scss"
+    },
+    "./colors": {
+      "sass": "./src/lib/styles/theme/colors.scss"
     }
   }
 }
