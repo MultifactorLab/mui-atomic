@@ -10,11 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: echo "Switch working directory"
-      - run: ls -a && cd ./mui-atomic && ls -a
-
       - name: Install dependencies
-        run: npm install --foreground-scripts
+        run: cd ./mui-atomic && ls -a && npm install --foreground-scripts
 
       - name: Run build
         run: npm run build
