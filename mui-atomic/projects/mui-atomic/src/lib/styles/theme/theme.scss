@@ -1,6 +1,4 @@
-@use 'colors';
-
 .mui-link {
   text-decoration: none;
-  color: colors.$mui-secondary-400;
+  color: var(--mui-text-action);
 }

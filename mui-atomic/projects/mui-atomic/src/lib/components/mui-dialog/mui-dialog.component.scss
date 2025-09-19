@@ -1,5 +1,5 @@
+@use '../../styles/mui.scss';
 @use '../../styles/spaces/config';
-@use '../../styles/theme/colors';
 @use 'sass:map';
 
 .mui-dialog- {
@@ -17,7 +17,7 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
   }
-  &content-{
+  &content- {
     &container {
       border-radius: config.$mui-full-block;
       width: fit-content;
@@ -29,7 +29,7 @@
       margin: auto;
       padding: map.get(config.$mui-block-sizes, '3');
       max-height: fit-content;
-      background-color: colors.$white;
+      background-color: var(--mui-background-base);
     }
     &body {
       padding-top: map.get(config.$mui-block-sizes, '4');

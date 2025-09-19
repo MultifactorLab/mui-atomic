@@ -1,5 +1,4 @@
 @use '../../styles/mui.scss';
-@use '../../styles/theme/colors';
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
@@ -10,6 +9,6 @@
   font-size: 0.9375em;
   overflow-wrap: anywhere;
   &:hover {
-    background-color: colors.$mui-primary-300;
+    background-color: var(--mui-background-base-alt);
   }
 }

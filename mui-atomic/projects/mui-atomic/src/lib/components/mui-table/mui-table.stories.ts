@@ -32,15 +32,25 @@ export const WithData: Story = {
       columns: [new MuiTableColumnDefinition('1', 'Колонка 1'), new MuiTableColumnDefinition('2', 'Колонка 2')],
       rows: [
         ['', 'Первая строка 1 колонки', 'Второая строка 2 колонки'],
-        ['', 'Вторая строка 1 колонки', 'Вторая строка 2 колонки']
+        ['', 'Вторая строка 1 колонки', 'Вторая строка 2 колонки'],
+        ['', 'Третья строка 1 колонки', 'Третья строка 2 колонки'],
+        ['', 'Первая вложенная строка 1 колонки', 'Первая вложенная строка 2 колонки'],
+        ['', 'Вторая вложенная строка 1 колонки', 'Вторая вложенная строка 2 колонки'],
+        ['', '2 уровень вложености', '2 уровень вложености']
       ]
     },
     template: `
       <mui-table [dataLength]="dataLength">
-        <mui-table-head [columns]="columns"></mui-table-head>
+        <mui-table-head [hasAccordionInTable]="true" [columns]="columns"></mui-table-head>
         <mui-table-body>
-          <mui-table-row [columnConfig]="columns" [source]="rows[0]"></mui-table-row>
-          <mui-table-row [columnConfig]="columns" [source]="rows[1]"></mui-table-row>
+          <mui-table-row [hasAccordionInTable]="true" [columnConfig]="columns" [source]="rows[0]"></mui-table-row>
+          <mui-table-row [hasAccordionInTable]="true" [columnConfig]="columns" [source]="rows[1]"></mui-table-row>
+          <mui-table-row [canExpand]="true" [columnConfig]="columns" [source]="rows[2]">
+            <mui-table-row [hasAccordionInTable]="true" [columnConfig]="columns" [source]="rows[3]"></mui-table-row>
+            <mui-table-row [canExpand]="true" [hasAccordionInTable]="true" [nestedLevel]="1" [columnConfig]="columns" [source]="rows[4]">
+              <mui-table-row [hasAccordionInTable]="true" [nestedLevel]="2" [columnConfig]="columns" [source]="rows[5]"></mui-table-row>
+            </mui-table-row>
+          </mui-table-row>
         </mui-table-body>
       </mui-table>
     `

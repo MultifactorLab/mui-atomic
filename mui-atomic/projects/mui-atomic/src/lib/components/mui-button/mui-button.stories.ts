@@ -13,7 +13,7 @@ const meta: Meta<MuiButtonComponent> = {
   argTypes: {
     buttonStyle: {
       control: { type: 'select' },
-      options: ['cta', 'primary', 'secondary', 'outline', 'alert']
+      options: ['primary', 'secondary', 'outline', 'alert']
     },
     size: {
       control: { type: 'select' },
@@ -30,6 +30,11 @@ type Story = StoryObj<MuiButtonComponent>;
 
 export const Default: Story = {
   tags: ['core'],
+  args: {
+    buttonStyle: 'primary',
+    size: 'xs',
+    height: 'normal'
+  },
   render: args => ({
     props: args,
     template: `

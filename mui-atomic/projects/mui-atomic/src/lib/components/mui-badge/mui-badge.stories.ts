@@ -23,13 +23,6 @@ type Story = StoryObj<MuiBadgeComponent>;
 export const Default: Story = {
   tags: ['core'],
   args: {
-    text: 'Заголовок'
-  }
-};
-
-export const Colored: Story = {
-  tags: ['core'],
-  args: {
     text: 'Заголовок',
     style: 'green'
   }

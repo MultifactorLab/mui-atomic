@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { IconSize, IconSizes } from '../sizes';
 
 @Component({
   selector: 'mui-refresh-icon',
@@ -12,4 +13,8 @@ import { Component } from '@angular/core';
     </svg>
   `
 })
-export class RefreshMuiIconComponent {}
+export class RefreshMuiIconComponent {
+  iconSize = input<IconSize>('M');
+
+  protected size = computed(() => IconSizes.get(this.iconSize()) ?? 24);
+}

@@ -1,5 +1,4 @@
 @use '../../styles/mui.scss';
-@use '../../styles/theme/colors';
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
@@ -13,7 +12,7 @@ select {
   background-position-x: 99%;
   line-height: 19.2px;
   padding: 0 10px;
-  color: colors.$mui-gray-accent;
+  color: var(--mui-text-secondary);
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -23,13 +22,13 @@ select {
   font-family: Inter, sans-serif;
 
   &:focus-visible {
-    border: 1px solid colors.$mui-primary-400;
+    border: 1px solid var(--mui-border-normal);
   }
 
   &::placeholder {
     font-size: 1em;
     line-height: 19.2px;
-    color: colors.$mui-gray-accent;
+    color: var(--mui-text-secondary);
   }
 
   &.height {
@@ -46,7 +45,7 @@ select {
 }
 
 .title {
-  color: colors.$mui-primary-700;
+  color: var(--tui-text-primary);
 }
 
 .options-list {

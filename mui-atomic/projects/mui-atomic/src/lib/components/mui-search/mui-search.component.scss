@@ -1,5 +1,4 @@
 @use '../../styles/mui.scss';
-@use '../../styles/theme/colors';
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
@@ -10,7 +9,7 @@
 
   svg {
     path {
-      fill: colors.$mui-gray-accent;
+      fill: var(--mui-background-neutral-2);
       opacity: 1;
     }
   }
@@ -27,7 +26,7 @@
 }
 
 .icon-inside-input > svg > path {
-  fill: colors.$mui-gray-accent;
+  fill: var(--mui-background-neutral-2);
 }
 
 mui-textbox > input {

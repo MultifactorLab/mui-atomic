@@ -1,3 +1,5 @@
+@use '../../styles/mui.scss';
+
 label {
   border-radius: 0.25em;
   font-weight: 600;
@@ -10,19 +12,19 @@ label {
 
 .mui-badge {
   &-red {
-    background-color: #FFECEC;
-    color: #FF4747;
+    background-color: #ffecec;
+    color: #ff4747;
   }
   &-yellow {
-    background-color: #FDFFE3;
-    color: #CD9322;
+    background-color: #fdffe3;
+    color: #cd9322;
   }
   &-green {
-    background-color: #EAFDEC;
-    color: #22CD33;
+    background-color: #eafdec;
+    color: #22cd33;
   }
   &-blue {
-    background-color: #ECF5FB;
-    color: #579AD7;
+    background-color: #ecf5fb;
+    color: #579ad7;
   }
 }
