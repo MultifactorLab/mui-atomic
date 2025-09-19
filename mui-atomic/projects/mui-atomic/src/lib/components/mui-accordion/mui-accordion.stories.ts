@@ -3,6 +3,7 @@ import { ChevronMuiIconComponent } from '../mui-icon';
 import { MuiAccordionComponent } from './mui-accordion.component';
 
 const meta: Meta<MuiAccordionComponent> = {
+  title: 'Design System/Components/Accordion',
   component: MuiAccordionComponent,
   decorators: [
     moduleMetadata({
@@ -13,7 +14,8 @@ const meta: Meta<MuiAccordionComponent> = {
 export default meta;
 type Story = StoryObj<MuiAccordionComponent>;
 
-export const Base: Story = {
+export const Default: Story = {
+  tags: ['core'],
   args: {
     title: 'Заголовок'
   },

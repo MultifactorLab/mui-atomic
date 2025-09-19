@@ -1,3 +1,4 @@
+@use '../../styles/mui.scss';
 @use '../../styles/theme/colors';
 
 .datepicker-placeholder {
@@ -19,8 +20,10 @@ input {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  font-family: "Inter", sans-serif;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  font-family: 'Inter', sans-serif;
   &:focus-visible {
     border: 1px solid colors.$mui-primary-400;
   }

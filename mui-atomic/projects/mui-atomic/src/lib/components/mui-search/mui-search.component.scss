@@ -1,6 +1,7 @@
+@use '../../styles/mui.scss';
 @use '../../styles/theme/colors';
 @use '../../styles/spaces/config';
-@use "sass:map";
+@use 'sass:map';
 
 .icon-inside-input {
   position: absolute;
@@ -32,4 +33,3 @@
 mui-textbox > input {
   text-indent: 40px;
 }
-
