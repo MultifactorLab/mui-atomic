@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: cd ./mui-atomic && ls -a && npm install --foreground-scripts
+        run: cd ./mui-atomic && npm install --foreground-scripts
 
       - name: Run build
-        run: npm run build
+        run: cd ./mui-atomic && npm run build
