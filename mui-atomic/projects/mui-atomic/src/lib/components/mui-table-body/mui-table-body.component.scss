@@ -1,8 +1,8 @@
-@use '../../styles/theme/colors';
+@use '../../styles/mui.scss';
 
 :host {
   display: table-row-group;
   vertical-align: middle;
   font-size: 0.9375em;
-  color: colors.$mui-black-light;
+  color: var(--mui-text-primary);
 }

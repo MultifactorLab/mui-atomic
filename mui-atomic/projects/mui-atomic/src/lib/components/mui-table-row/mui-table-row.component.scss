@@ -1,4 +1,4 @@
-@use '../../styles/theme/colors';
+@use '../../styles/mui.scss';
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
@@ -16,21 +16,21 @@
   cursor: pointer;
 
   &:not(.header-row) {
-    border-top: 1px solid rgb(0 0 0 / 6.25%);
+    border-top: 1px solid var(--mui-border-normal);
   }
 
   &:hover:not(.header-row) {
-    background-color: colors.$mui-primary-100;
+    background-color: var(--mui-background-base-alt);
   }
 }
 
 .nested {
   &-level-1 {
-    background-color: colors.$mui-primary-200;
+    background-color: var(--mui-background-neutral-1);
   }
 
   &-level-2 {
-    background-color: colors.$mui-primary-300;
+    background-color: var(--mui-background-neutral-2);
   }
 }
 

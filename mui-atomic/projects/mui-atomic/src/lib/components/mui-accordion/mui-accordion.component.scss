@@ -1,11 +1,11 @@
-@use '../../styles/theme/colors';
+@use '../../styles/mui.scss';
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
 .accordion {
   box-sizing: border-box;
-  background: colors.$mui-primary-200;
-  border: 1px solid colors.$mui-border;
+  background: var(--mui-background-base-alt);
+  border: 1px solid var(--mui-border-normal);
   border-radius: map.get(config.$mui-block-sizes, '2');
   cursor: pointer;
   width: 100%;
@@ -14,17 +14,17 @@
   transition: 0.4s;
 
   &-opened {
-    gap: map.get(config.$mui-block-sizes, '1')
+    gap: map.get(config.$mui-block-sizes, '1');
   }
 }
 
 .title {
   margin: 0;
-  color: colors.$mui-primary-700;
+  color: var(--mui-text-primary);
 }
 
 .panel {
-  background: colors.$mui-primary-200;
+  background: var(--mui-background-base-alt);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;

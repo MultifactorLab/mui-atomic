@@ -21,9 +21,6 @@
     },
     "./flex": {
       "sass": "./src/lib/styles/utils/flex.scss"
-    },
-    "./colors": {
-      "sass": "./src/lib/styles/theme/colors.scss"
     }
   }
 }

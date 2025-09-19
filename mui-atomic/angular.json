@@ -28,10 +28,26 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/mui-atomic/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/mui-atomic/.storybook",
+            "browserTarget": "mui-atomic:build",
+            "compodoc": false,
+            "port": 6006,
+            "styles": ["projects/mui-atomic/src/lib/styles/theme/palette.scss", "projects/mui-atomic/src/lib/styles/theme/typography.scss"]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/mui-atomic/.storybook",
+            "browserTarget": "mui-atomic:build",
+            "compodoc": false,
+            "outputDir": "storybook-static"
           }
         }
       }

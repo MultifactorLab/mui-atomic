@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// TODO: пустой компонент
 @Component({
   selector: 'app-mui-password-input',
   imports: [],
@@ -7,6 +8,4 @@ import { Component } from '@angular/core';
   templateUrl: './mui-password-input.component.html',
   styleUrl: './mui-password-input.component.scss'
 })
-export class MuiPasswordInputComponent {
-
-}
+export class MuiPasswordInputComponent {}

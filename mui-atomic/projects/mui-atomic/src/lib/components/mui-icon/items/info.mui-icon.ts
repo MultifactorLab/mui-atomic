@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { IconSize, IconSizes } from '../sizes';
 
 @Component({
   selector: 'mui-info-icon',
   standalone: true,
   template: `
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg [attr.width]="size()" [attr.height]="size()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -14,4 +15,8 @@ import { Component } from '@angular/core';
     </svg>
   `
 })
-export class InfoMuiIconComponent {}
+export class InfoMuiIconComponent {
+  iconSize = input<IconSize>('M');
+
+  protected size = computed(() => IconSizes.get(this.iconSize()) ?? 24);
+}

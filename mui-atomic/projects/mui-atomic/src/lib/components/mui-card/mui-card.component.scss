@@ -1,4 +1,4 @@
-@use '../../styles/theme/colors';
+@use '../../styles/mui.scss';
 
 :host {
   display: flex;
@@ -12,9 +12,10 @@
 
 .card-background- {
   &dark {
-    background-color: colors.$mui-low;
+    color: var(--mui-text-primary-on-accent-1);
+    background-color: var(--mui-background-accent-opposite);
   }
   &light {
-    background-color: colors.$mui-primary-50;
+    background-color: var(--mui-background-base-alt);
   }
 }

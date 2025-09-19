@@ -1,13 +1,14 @@
-@use '../../styles/theme/colors';
+@use '../../styles/mui.scss';
 
 .mui-btn {
-  background-color: #27292E;
-  cursor: pointer;
+  background-color: var(--mui-background-accent-1);
   border-radius: 8px;
+  border: none;
   font-size: 16px;
   line-height: 19.2px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
+  cursor: pointer;
+
   &-normal-height {
     height: 2.8125em;
   }
@@ -21,33 +22,55 @@
   }
 }
 
-.cta {
-
-}
-
 .outline {
-  background-color: colors.$white;
+  background-color: transparent;
   border: 1px solid #ced4da;
-  color: colors.$mui-primary-700;
+  color: var(--mui-text-action);
+
+  &:active {
+    background-color: var(--mui-background-neutral-1);
+  }
 }
 
 .primary {
-  color: colors.$white;
+  background-color: var(--mui-background-accent-1);
+  color: var(--mui-text-primary-on-accent-1);
+
+  &:hover {
+    background-color: var(--mui-background-accent-1-hover);
+  }
+
+  &:active {
+    background-color: var(--mui-background-accent-1-pressed);
+  }
 }
 
 .alert {
-  background-color: colors.$mui-secondary-600;
-  color: colors.$white;
-  border: 1px solid colors.$mui-secondary-700;
+  background-color: var(--mui-background-accent-2);
+  color: var(--mui-text-primary-on-accent-2);
+
+  &:hover {
+    background-color: var(--mui-background-accent-2-hover);
+    color: var(--mui-text-primary-on-accent-2);
+  }
+
+  &:active {
+    background-color: var(--mui-background-accent-2-pressed);
+    color: var(--mui-text-primary-on-accent-2);
+  }
 }
 
 .secondary {
-  background-color: colors.$white;
-  color: colors.$mui-black-accent;
-  border: 1px solid colors.$white;
+  background-color: var(--mui-background-neutral-1);
+  color: var(--mui-text-action);
+
   &:hover {
-    background-color: colors.$mui-low;
-    border: 1px solid colors.$mui-low;
-    color: colors.$white;
+    background-color: var(--mui-background-neutral-1-hover);
+    color: var(--mui-text-action-hover);
+  }
+
+  &:active {
+    background-color: var(--mui-background-neutral-1-pressed);
+    color: var(--mui-text-action-hover);
   }
 }
