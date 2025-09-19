@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - run: echo "Switch working directory"
-      - run: cd ./mui-atomic
+      - run: ls -a && cd ./mui-atomic && ls -a
 
       - name: Install dependencies
         run: npm install --foreground-scripts
