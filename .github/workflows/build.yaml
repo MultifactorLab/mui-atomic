@@ -1,0 +1,17 @@
+name: Build Test
+run-name: Build Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: cd ./mui-atomic && npm install --foreground-scripts
+
+      - name: Run build
+        run: cd ./mui-atomic && npm run build
