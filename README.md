@@ -5,3 +5,4 @@
 - подключить .npmrc в проект
 - добавить зависимость в package.json
 - npm install
+- 
