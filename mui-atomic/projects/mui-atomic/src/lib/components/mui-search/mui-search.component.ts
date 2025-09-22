@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, input, model, output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SearchMuiIconComponent } from '../mui-icon/items/search.mui-icon';
 import { MuiTextboxComponent } from '../mui-textbox/mui-textbox.component';
@@ -13,17 +13,16 @@ import { MuiTextboxComponent } from '../mui-textbox/mui-textbox.component';
   encapsulation: ViewEncapsulation.None
 })
 export class MuiSearchComponent {
-  // TODO: name не используется
-  @Input() name?: string;
-  @Output() onChange: EventEmitter<string> = new EventEmitter();
-  value: string = '';
+  value = model<string>('');
+  placeholder = input<string>('Поиск');
+  disabled = input<boolean>(false);
+  onChange = output<string>();
 
-  @HostListener('keydown.enter')
-  _onEnterListener() {
-    this.onChange.emit(this.value);
+  @HostListener('keydown.enter') protected onEnterListener() {
+    this.onChange.emit(this.value());
   }
 
-  onFocusOut() {
-    this.onChange.emit(this.value);
+  protected onFocusOut() {
+    this.onChange.emit(this.value());
   }
 }
