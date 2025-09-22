@@ -1,4 +1,11 @@
-<div class="input-with-icon-container">
+<div class="input-with-icon-container mui-flex mui-align-items-center mui-px-1">
   <mui-search-icon class="mui-flex icon-inside-input"></mui-search-icon>
-  <mui-textbox name="search" padding="with-icon" class="input-with-icon" (focusout)="onFocusOut()" [(ngModel)]="value" [placeholder]="'Поиск'"></mui-textbox>
+  <mui-textbox
+    name="search"
+    class="input-with-icon"
+    (focusout)="onFocusOut()"
+    [(ngModel)]="value"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+  ></mui-textbox>
 </div>

@@ -2,33 +2,19 @@
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
-.icon-inside-input {
-  position: absolute;
-  left: map.get(config.$mui-block-sizes, '2');
-  width: map.get(config.$mui-block-sizes, '3');
-
-  svg {
-    path {
-      fill: var(--mui-background-neutral-2);
-      opacity: 1;
-    }
-  }
-}
-
 .input-with-icon {
-  width: 100%;
-  padding-left: config.$mui-half-block;
+  inline-size: 100%;
+
   &-container {
-    display: flex;
-    align-items: center;
-    position: relative;
+    border: 1px solid var(--mui-border-normal);
+    border-radius: map.get(config.$mui-block-sizes, '1');
   }
 }
 
-.icon-inside-input > svg > path {
-  fill: var(--mui-background-neutral-2);
+mui-textbox.input-with-icon > input {
+  border: none;
 }
 
-mui-textbox > input {
-  text-indent: 40px;
+mui-textbox.input-with-icon > input:focus-visible {
+  outline: none;
 }

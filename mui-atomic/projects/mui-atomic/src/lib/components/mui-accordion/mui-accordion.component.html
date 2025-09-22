@@ -1,7 +1,7 @@
 <div class="accordion mui-flex mui-flex-column mui-pad-2" [class.accordion-opened]="opened()">
   <div class="mui-flex mui-gap-2 mui-justify-content-between">
     <h2 class="title" [class.active]="opened()">{{ title() }}</h2>
-    <mui-chevron-icon class="icon" [class.icon--opened]="opened()"></mui-chevron-icon>
+    <mui-chevron-icon class="icon" [class.icon-opened]="opened()"></mui-chevron-icon>
   </div>
 
   <div #panel class="panel" [class.panel-opened]="opened()">

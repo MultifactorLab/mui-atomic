@@ -8,8 +8,11 @@
     [options]="pageSizes"
   ></mui-select>
 </div>
-<div class="pagination-right mui-flex mui-align-items-center">
-  Страница {{ currentPage }} из {{ totalPages }}
-  <mui-prev-icon (click)="goPrevPage()" class="mui-mx-2"></mui-prev-icon>
-  <mui-next-icon (click)="goNextPage()" class="mui-mx-2"></mui-next-icon>
-</div>
+
+@if (totalPages > 1) {
+  <div class="pagination-right mui-flex mui-align-items-center">
+    Страница {{ currentPage }} из {{ totalPages }}
+    <mui-prev-icon (click)="goPrevPage()" class="mui-mx-2"></mui-prev-icon>
+    <mui-next-icon (click)="goNextPage()" class="mui-mx-2"></mui-next-icon>
+  </div>
+}
