@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SearchMuiIconComponent } from '../mui-icon/items/search.mui-icon';
 import { MuiTextboxComponent } from '../mui-textbox/mui-textbox.component';
@@ -9,7 +9,8 @@ import { MuiTextboxComponent } from '../mui-textbox/mui-textbox.component';
   templateUrl: './mui-search.component.html',
   styleUrl: './mui-search.component.scss',
   imports: [MuiTextboxComponent, FormsModule, SearchMuiIconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class MuiSearchComponent {
   // TODO: name не используется

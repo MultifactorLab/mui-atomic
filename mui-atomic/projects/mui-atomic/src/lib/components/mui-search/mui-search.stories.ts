@@ -5,7 +5,7 @@ import { MuiTextboxComponent } from '../mui-textbox/mui-textbox.component';
 import { MuiSearchComponent } from './mui-search.component';
 
 const meta: Meta<MuiSearchComponent> = {
-  title: 'Design System/Components/Search',
+  title: 'Design System/Inputs/Search',
   component: MuiSearchComponent,
   decorators: [
     moduleMetadata({
