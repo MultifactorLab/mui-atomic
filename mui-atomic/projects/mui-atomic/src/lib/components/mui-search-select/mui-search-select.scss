@@ -48,6 +48,7 @@
 }
 
 .options-list {
+  box-sizing: border-box;
   position: absolute;
   border: 1px solid var(--mui-border-normal);
   border-radius: map.get(config.$mui-block-sizes, '1');
@@ -58,6 +59,7 @@
   scroll-behavior: smooth;
   scrollbar-width: thin;
   z-index: 1;
+  user-select: none;
 
   &-container {
     position: relative;
@@ -74,4 +76,22 @@
 
 .disabled {
   cursor: unset;
+}
+
+.search-result {
+  box-sizing: border-box;
+  border-block-end: 1px solid var(--mui-border-normal);
+  padding-block-end: map.get(config.$mui-block-sizes, '1');
+}
+
+.option-list-title {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--mui-text-secondary);
+}
+
+.empty-search {
+  font-weight: 400;
+  color: var(--mui-text-secondary);
 }

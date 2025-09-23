@@ -30,7 +30,9 @@ import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
 export class MuiSearchSelect implements OnInit, OnDestroy {
   title = input<string>('');
   searching = input<boolean>(false);
+  optionsTitle = input<string>('');
   options = input<MuiSelectableItem[]>([]);
+  searchOptions = input<MuiSelectableItem[]>([]);
   onOptionChange = output<MuiSelectableItem[]>();
   onSearchChange = output<string>();
 
@@ -38,6 +40,7 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
 
   protected selectedOptions: MuiSelectableItem[] = [];
   protected panelOpened = signal(false);
+  protected searchEmpty = false;
   protected selectMenuVisible = computed(() => this.panelOpened() && this.options().length > 0);
   private unsubscribe: Subject<void> = new Subject<void>();
 
@@ -96,6 +99,14 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
         return false;
       }
 
+      if (target.closest('.options-list-container')) {
+        return false;
+      }
+
+      if (target.closest('.search-wrapper')) {
+        return false;
+      }
+
       return target.localName !== 'mui-select-option' && !classBlocklist.some(cls => target.classList.contains(cls));
     }
 
@@ -109,5 +120,10 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
     }
 
     return false;
+  }
+
+  protected handleSearchValueChanged(searchValue: string) {
+    this.searchEmpty = searchValue.trim().length === 0;
+    this.onSearchChange.emit(searchValue);
   }
 }
