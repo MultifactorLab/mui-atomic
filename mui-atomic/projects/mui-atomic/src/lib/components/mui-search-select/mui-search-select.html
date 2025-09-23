@@ -1,14 +1,24 @@
 <div #selectContainer class="search-select-container mui-flex mui-flex-column mui-pad-2 mui-gap-1">
-  <div class="mui-flex mui-flex-column mui-gap-1" (click)="togglePanelVisibility()">
+  <div class="mui-flex mui-flex-column mui-gap-1">
     <h2 class="title">{{ title() }}</h2>
     <div
       class="search-wrapper mui-flex mui-align-items-center mui-justify-content-between mui-gap-1 mui-pr-1"
       [class.disabled]="searching()"
     >
-      <mui-search class="search" [placeholder]="placeholder" [disabled]="searching()" (onChange)="onSearchChange.emit($event)"></mui-search>
+      <mui-search
+        class="search"
+        [placeholder]="placeholder"
+        [disabled]="searching()"
+        (onChange)="handleSearchValueChanged($event)"
+      ></mui-search>
 
       @if (this.options().length > 0 && !searching()) {
-        <mui-chevron-icon class="icon" [class.icon-rotated]="selectMenuVisible()" [iconSize]="'L'"></mui-chevron-icon>
+        <mui-chevron-icon
+          class="icon"
+          [class.icon-rotated]="selectMenuVisible()"
+          [iconSize]="'L'"
+          (click)="togglePanelVisibility()"
+        ></mui-chevron-icon>
       }
 
       @if (searching()) {
@@ -19,11 +29,26 @@
 
   @if (selectMenuVisible() && !searching()) {
     <div class="options-list-container" [class.rotated-panel-container]="showPanelOnTop">
-      <div class="options-list mui-flex mui-flex-column">
-        @for (item of options(); track item.id) {
-          <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
-          </mui-select-option>
-        }
+      <div class="options-list mui-flex mui-flex-column mui-pad-2 mui-gap-2">
+        <div class="search-result mui-flex mui-flex-column">
+          @if (searchOptions().length > 0) {
+            <h3 class="option-list-title">Результат поиска:</h3>
+            @for (item of searchOptions(); track item.id) {
+              <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
+              </mui-select-option>
+            }
+          } @else {
+            <span class="empty-search">Ничего не найдено</span>
+          }
+        </div>
+
+        <div class="mui-flex mui-flex-column">
+          <h3 class="option-list-title">{{ optionsTitle() }}</h3>
+          @for (item of options(); track item.id) {
+            <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
+            </mui-select-option>
+          }
+        </div>
       </div>
     </div>
   }
