@@ -3,9 +3,7 @@
 @use 'sass:map';
 
 .search-select-container {
-  background: var(--mui-background-base);
-  border: 1px solid var(--mui-border-normal);
-  border-radius: map.get(config.$mui-block-sizes, '2');
+  background: transparent;
 
   & .search-wrapper input,
   & .search-wrapper .input-with-icon-container {
@@ -18,10 +16,14 @@
   }
 }
 
+.select-wrapper {
+  gap: 0.25em;
+}
+
 .title {
   margin: 0;
-  font-size: 1.15em;
-  font-weight: 500;
+  font-size: 1em;
+  font-weight: 400;
   color: var(--mui-text-primary);
 }
 
