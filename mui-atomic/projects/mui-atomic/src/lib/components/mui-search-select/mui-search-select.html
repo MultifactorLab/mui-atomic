@@ -12,7 +12,7 @@
         (onChange)="handleSearchValueChanged($event)"
       ></mui-search>
 
-      @if (this.options().length > 0 && !searching()) {
+      @if (dropdownButtonVisible()) {
         <mui-chevron-icon
           class="icon"
           [class.icon-rotated]="selectMenuVisible()"

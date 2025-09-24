@@ -31,10 +31,10 @@
   border: 1px solid var(--mui-border-normal);
   border-radius: map.get(config.$mui-block-sizes, '1');
   padding-inline-start: 0.1em;
+}
 
-  &:hover:not:has(.disabled) {
-    border: 1px solid var(--mui-border-hover);
-  }
+.search-wrapper:hover:not(.disabled) {
+  border: 1px solid var(--mui-border-hover);
 }
 
 .search {
