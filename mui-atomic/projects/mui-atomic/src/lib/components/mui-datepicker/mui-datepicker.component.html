@@ -1,7 +1,6 @@
-<div class="mui-flex mui-flex-column">
-  <span class="datepicker-placeholder">{{placeholder}}</span>
+<div class="container mui-flex mui-flex-column">
+  <h2 class="title">{{ placeholder }}</h2>
   <input
-    class="mui-my-half"
     type="date"
     name="name"
     [disabled]="disabled"
@@ -13,10 +12,7 @@
     tabindex="0"
     placeholder="placeholder"
   />
-  @if(error) {
-    <span class="d-error">{{error}}</span>
+  @if (error) {
+    <span class="d-error">{{ error }}</span>
   }
 </div>
-
-
-

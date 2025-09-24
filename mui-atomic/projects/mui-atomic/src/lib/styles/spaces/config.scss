@@ -53,9 +53,26 @@ $mui-half-block-sizes: (
     margin-bottom: $size;
   }
 
+  .mui-mis-#{$code} {
+    margin-inline-start: $size;
+  }
+
+  .mui-mie-#{$code} {
+    margin-inline-end: $size;
+  }
+
+  .mui-mbs-#{$code} {
+    margin-block-start: $size;
+  }
+
+  .mui-mbe-#{$code} {
+    margin-block-end: $size;
+  }
+
   .mui-pad-#{$code} {
     padding: $size;
   }
+
   .mui-px-#{$code} {
     padding: 0 $size;
   }

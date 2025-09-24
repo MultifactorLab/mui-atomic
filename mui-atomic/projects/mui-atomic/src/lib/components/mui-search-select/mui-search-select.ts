@@ -42,6 +42,7 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
   protected panelOpened = signal(false);
   protected searchEmpty = false;
   protected selectMenuVisible = computed(() => this.panelOpened() && this.options().length > 0);
+  protected dropdownButtonVisible = computed(() => (this.options().length > 0 || this.searchOptions().length > 0) && !this.searching());
   private unsubscribe: Subject<void> = new Subject<void>();
 
   ngOnInit() {

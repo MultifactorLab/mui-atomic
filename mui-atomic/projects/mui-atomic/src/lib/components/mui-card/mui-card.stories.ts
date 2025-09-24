@@ -11,12 +11,12 @@ const meta: Meta<MuiCardComponent> = {
     })
   ],
   argTypes: {
-    maxWidth: {
-      control: { type: 'text' }
-    },
     background: {
       control: { type: 'select' },
       options: ['dark', 'light', 'empty']
+    },
+    shadow: {
+      control: { type: 'boolean' }
     }
   }
 };
@@ -26,13 +26,13 @@ type Story = StoryObj<MuiCardComponent>;
 export const Default: Story = {
   tags: ['layout', 'core'],
   args: {
-    maxWidth: '500',
-    background: 'empty'
+    background: 'empty',
+    shadow: false
   },
   render: args => ({
     props: args,
     template: `
-      <mui-card [maxWidth]="maxWidth" [background]="background">
+      <mui-card [shadow]="shadow" [background]="background">
         <p>Контент карточки</p>
       </mui-card>
     `
