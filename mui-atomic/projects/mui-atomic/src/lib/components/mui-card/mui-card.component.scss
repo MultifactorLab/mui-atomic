@@ -11,10 +11,16 @@
 }
 
 .card-background- {
+  &empty {
+    color: inherit;
+    background: transparent;
+  }
+
   &dark {
     color: var(--mui-text-primary-on-accent-1);
     background: var(--mui-background-accent-opposite);
   }
+
   &light {
     background: var(--mui-background-base-alt);
   }
