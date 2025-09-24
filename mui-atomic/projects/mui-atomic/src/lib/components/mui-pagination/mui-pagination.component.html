@@ -1,7 +1,6 @@
-<div class="pagination-left mui-flex mui-align-items-center">
+<div class="pagination-left mui-flex mui-align-items-center mui-gap-2">
   Записей на странице
   <mui-select
-    class="mui-mx-2"
     heightStyle="half-size"
     (onSelectedItemChange)="setPageSize($event)"
     [currentSelectedItem]="defaultPageSize"
@@ -10,9 +9,17 @@
 </div>
 
 @if (totalPages > 1) {
-  <div class="pagination-right mui-flex mui-align-items-center">
-    Страница {{ currentPage }} из {{ totalPages }}
-    <mui-prev-icon (click)="goPrevPage()" class="mui-mx-2"></mui-prev-icon>
-    <mui-next-icon (click)="goNextPage()" class="mui-mx-2"></mui-next-icon>
+  <div class="pagination-right mui-flex mui-align-items-center mui-gap-2">
+    <span class="pagination-text">Страница {{ currentPage }} из {{ totalPages }}</span>
+
+    <div class="mui-flex mui-align-items-center mui-justify-content-center mui-gap-1">
+      <button class="mui-flex mui-align-items-center mui-justify-content-center button-navigation" (click)="goPrevPage()">
+        <mui-prev-icon></mui-prev-icon>
+      </button>
+
+      <button class="mui-flex mui-align-items-center mui-justify-content-center button-navigation" (click)="goNextPage()">
+        <mui-next-icon></mui-next-icon>
+      </button>
+    </div>
   </div>
 }

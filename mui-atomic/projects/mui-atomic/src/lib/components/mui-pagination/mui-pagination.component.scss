@@ -9,9 +9,22 @@
 
 mui-next-icon,
 mui-prev-icon {
-  cursor: pointer;
+  display: flex;
 }
 
 mui-select {
   min-width: map.get(config.$mui-block-sizes, '8');
+}
+
+.pagination-text {
+  font-variant-numeric: tabular-nums;
+}
+
+.button-navigation {
+  margin: 0;
+  border: none;
+  background: transparent;
+  min-inline-size: 30px;
+  min-block-size: 30px;
+  cursor: pointer;
 }

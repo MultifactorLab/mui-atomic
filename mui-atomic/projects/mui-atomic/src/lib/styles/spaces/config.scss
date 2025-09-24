@@ -53,6 +53,10 @@ $mui-half-block-sizes: (
     margin-bottom: $size;
   }
 
+  .mui-ml-#{$code} {
+    margin-inline-end: $size;
+  }
+
   .mui-pad-#{$code} {
     padding: $size;
   }
