@@ -1,8 +1,14 @@
 @use '../../styles/mui.scss';
 
-.d-error {
-  font-size: 0.75em;
-  color: var(--mui-text-negative);
+.container {
+  gap: 0.25em;
+}
+
+.title {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--mui-text-primary);
 }
 
 input {
@@ -11,8 +17,8 @@ input {
   font-size: 16px;
   line-height: 19.2px;
   padding: 0 10px;
-  color: var(--mui-text-secondary);
-  border: 1px solid #ced4da;
+  background-color: transparent;
+  border: 1px solid var(--mui-border-normal);
   border-radius: 0.25rem;
   cursor: pointer;
   transition:
@@ -36,4 +42,9 @@ input {
     cursor: pointer;
     color: var(--mui-text-secondary);
   }
+}
+
+.d-error {
+  font-size: 0.75em;
+  color: var(--mui-text-negative);
 }
