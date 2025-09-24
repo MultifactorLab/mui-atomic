@@ -11,9 +11,6 @@ const meta: Meta<MuiCardComponent> = {
     })
   ],
   argTypes: {
-    maxWidth: {
-      control: { type: 'text' }
-    },
     background: {
       control: { type: 'select' },
       options: ['dark', 'light', 'empty']
@@ -26,7 +23,6 @@ type Story = StoryObj<MuiCardComponent>;
 export const Default: Story = {
   tags: ['layout', 'core'],
   args: {
-    maxWidth: '500',
     background: 'empty'
   },
   render: args => ({

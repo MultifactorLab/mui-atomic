@@ -9,6 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MuiCardComponent {
-  @Input() maxWidth: string = '0';
   @Input() background: 'dark' | 'light' | 'empty' = 'empty';
 }
