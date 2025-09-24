@@ -14,7 +14,7 @@ select {
   padding: 0 10px;
   color: var(--mui-text-secondary);
   border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  border-radius: 0.5em;
   cursor: pointer;
   transition:
     border-color 0.15s ease-in-out,
@@ -51,7 +51,7 @@ select {
 .options-list {
   position: absolute;
   border: 1px solid #ced4da;
-  border-radius: 0.25em;
+  border-radius: 0.5em;
   background-color: white;
   width: 100%;
   max-width: 350px;

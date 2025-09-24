@@ -2,15 +2,19 @@
 @use '../../styles/spaces/config';
 @use 'sass:map';
 
+:host {
+  display: flex;
+}
+
 input {
   width: 100%;
   height: 50px;
   font-size: 15px;
   line-height: 1.5;
-  color: #495057;
+  color: inherit;
   background-color: transparent;
   border: 1px solid var(--mui-border-normal);
-  border-radius: 0.25rem;
+  border-radius: 0.5em;
   transition:
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
