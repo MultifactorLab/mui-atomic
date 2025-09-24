@@ -7,15 +7,24 @@
 
 .mui-card-layout {
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--mui-border-normal);
 }
 
 .card-background- {
   &dark {
     color: var(--mui-text-primary-on-accent-1);
-    background-color: var(--mui-background-accent-opposite);
+    background: var(--mui-background-accent-opposite);
   }
   &light {
-    background-color: var(--mui-background-base-alt);
+    background: var(--mui-background-base-alt);
+  }
+}
+
+.shadow {
+  transition: box-shadow 0.3s ease;
+  box-shadow: var(--mui-shadow-small);
+
+  &:hover {
+    box-shadow: var(--mui-shadow-small-hover);
   }
 }

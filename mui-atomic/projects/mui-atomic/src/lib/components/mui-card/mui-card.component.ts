@@ -10,4 +10,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class MuiCardComponent {
   @Input() background: 'dark' | 'light' | 'empty' = 'empty';
+  @Input() shadow: boolean = false;
 }
