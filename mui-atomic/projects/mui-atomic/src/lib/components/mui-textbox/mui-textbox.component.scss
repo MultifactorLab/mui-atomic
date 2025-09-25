@@ -4,6 +4,8 @@
 
 :host {
   display: flex;
+  flex-direction: column;
+  gap: 0.25em;
 }
 
 input {
@@ -43,5 +45,4 @@ label {
   color: var(--mui-text-secondary);
   font-size: 1rem;
   display: inline-block;
-  margin-bottom: 0.5rem;
 }
