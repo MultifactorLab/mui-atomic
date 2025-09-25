@@ -16,6 +16,10 @@ const meta: Meta<MuiTextboxComponent> = {
       control: { type: 'select' },
       options: ['normal', 'with-icon']
     },
+    type: {
+      control: { type: 'select' },
+      options: ['text', 'number', 'email', 'search']
+    },
     placeholder: {
       control: { type: 'text' }
     },
@@ -30,7 +34,20 @@ type Story = StoryObj<MuiTextboxComponent>;
 export const Default: Story = {
   tags: ['core', 'input'],
   args: {
+    type: 'text',
+    padding: 'normal',
     placeholder: 'Подсказка',
     placeholderOnTop: false
+  }
+};
+
+export const Autofocused: Story = {
+  tags: ['core', 'input'],
+  args: {
+    type: 'text',
+    padding: 'normal',
+    placeholder: 'Подсказка',
+    placeholderOnTop: false,
+    autofocused: true
   }
 };

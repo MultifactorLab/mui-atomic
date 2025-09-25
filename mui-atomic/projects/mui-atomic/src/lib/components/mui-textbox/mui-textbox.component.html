@@ -1,14 +1,16 @@
-@if(placeholderOnTop) {
-  <label for="{{name}}">{{placeholder}}</label>
+@if (placeholderOnTop) {
+  <label for="{{ name }}">{{ placeholder }}</label>
 }
 <input
-  [ngClass]="{'indent-normal': padding === 'normal', 'indent-with-icon': padding === 'with-icon'}"
-  type="text"
+  #input
+  tabindex="0"
+  [ngClass]="{ 'indent-normal': padding === 'normal', 'indent-with-icon': padding === 'with-icon' }"
+  [type]="type"
+  [autocomplete]="autocompleted"
+  [autofocus]="autofocused"
   [disabled]="disabled"
+  [placeholder]="placeholderOnTop ? '' : placeholder"
   [(ngModel)]="value"
   (blur)="onBlur()"
   (focus)="onFocus()"
-  #input
-  tabindex="0"
-  [placeholder]="placeholderOnTop ? '' : placeholder"
 />
