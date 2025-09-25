@@ -14,7 +14,8 @@
     "styles:check": "stylelint \"**/*.scss\"",
     "styles:fix": "stylelint \"**/*.scss\" --fix",
     "storybook": "ng run mui-atomic:storybook",
-    "build-storybook": "ng run mui-atomic:build-storybook"
+    "build-storybook": "ng run mui-atomic:build-storybook",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -69,6 +70,11 @@
     "stylelint-config-standard-scss": "^16.0.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.44.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
