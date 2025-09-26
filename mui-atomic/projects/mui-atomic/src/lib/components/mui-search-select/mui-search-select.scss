@@ -41,6 +41,12 @@
   inline-size: 100%;
 }
 
+.button-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 .icon {
   transition: transform 0.3s ease-out;
 }
@@ -82,7 +88,6 @@
 
 .search-result {
   box-sizing: border-box;
-  border-block-end: 1px solid var(--mui-border-normal);
   padding-block-end: map.get(config.$mui-block-sizes, '1');
 }
 

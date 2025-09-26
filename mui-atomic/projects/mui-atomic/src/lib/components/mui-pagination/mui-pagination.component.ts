@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { PrevMuiIconComponent } from '../mui-icon/items/prev.mui-icon';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NextMuiIconComponent } from '../mui-icon/items/next.mui-icon';
-import { MuiSelectComponent } from '../mui-select/mui-select.component';
+import { PrevMuiIconComponent } from '../mui-icon/items/prev.mui-icon';
 import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
+import { MuiSelectComponent } from '../mui-select/mui-select.component';
 import { PagedData } from './paged-data';
 
 export type PaginationSettings = {
@@ -30,9 +30,19 @@ export class MuiPaginationComponent implements OnInit {
     new MuiSelectableItem('100', false)
   ];
 
+  @Input() set currentPage(value: number) {
+    if (this.currentPage <= this.totalPages) {
+      this._currentPage = Math.max(0, value);
+    }
+  }
+
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
   @Output() onChangePage = new EventEmitter<PagedData>();
 
-  protected currentPage = 1;
+  protected _currentPage = 1;
   protected defaultPageSize = this.pageSizes[0];
   protected currentPageSize = Number(this.defaultPageSize.title);
 
