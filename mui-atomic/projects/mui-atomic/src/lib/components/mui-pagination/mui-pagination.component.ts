@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { PrevMuiIconComponent } from '../mui-icon/items/prev.mui-icon';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NextMuiIconComponent } from '../mui-icon/items/next.mui-icon';
-import { MuiSelectComponent } from '../mui-select/mui-select.component';
+import { PrevMuiIconComponent } from '../mui-icon/items/prev.mui-icon';
 import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
+import { MuiSelectComponent } from '../mui-select/mui-select.component';
 import { PagedData } from './paged-data';
 
 export type PaginationSettings = {
@@ -14,59 +14,69 @@ export type PaginationSettings = {
 
 @Component({
   selector: 'mui-pagination',
-  standalone: true,
   templateUrl: './mui-pagination.component.html',
   imports: [PrevMuiIconComponent, NextMuiIconComponent, MuiSelectComponent],
   styleUrl: './mui-pagination.component.scss'
 })
 export class MuiPaginationComponent implements OnInit {
-  @Input() totalPages: number = 0;
-  @Input() totalItems: number = 0;
-  @Input() pageSizes = [
-    new MuiSelectableItem('5', false),
-    new MuiSelectableItem('10', false),
-    new MuiSelectableItem('25', false),
-    new MuiSelectableItem('50', false),
-    new MuiSelectableItem('100', false)
+  @Input() totalPages = 0;
+  @Input() totalItems = 0;
+  @Input() pageSize: number = 5;
+  @Input() pageSizes: MuiSelectableItem[] = [
+    new MuiSelectableItem('5'),
+    new MuiSelectableItem('10'),
+    new MuiSelectableItem('25'),
+    new MuiSelectableItem('50'),
+    new MuiSelectableItem('100')
   ];
 
-  @Output() onChangePage = new EventEmitter<PagedData>();
-
-  protected currentPage = 1;
-  protected defaultPageSize = this.pageSizes[0];
-  protected currentPageSize = Number(this.defaultPageSize.title);
-
-  ngOnInit() {
-    this.updatePageSize();
+  @Input() set currentPage(value: number) {
+    if (value <= this.totalPages) {
+      this._currentPage = Math.max(1, value);
+    }
   }
 
-  private updatePageSize() {
-    this.defaultPageSize = this.pageSizes[0];
-    this.currentPageSize = Number(this.defaultPageSize.title);
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
+  @Output() pageSizeChange = new EventEmitter<number>();
+  @Output() onChangePage = new EventEmitter<PagedData>();
+
+  protected _currentPage = 1;
+  protected currentPageSize = this.pageSize;
+
+  ngOnInit() {
+    this.currentPageSize = this.pageSize;
+  }
+
+  get defaultPageSize(): MuiSelectableItem {
+    return this.pageSizes.find(p => Number(p.title) === this.pageSize) ?? this.pageSizes[0];
   }
 
   goNextPage() {
-    if (this.currentPage === this.totalPages) {
-      return;
+    if (this.currentPage < this.totalPages) {
+      this._currentPage++;
+      this.emitPageChange();
     }
-    this.currentPage++;
-    this.emitPageChange();
   }
 
   goPrevPage() {
-    if (this.currentPage === 1) {
-      return;
+    if (this.currentPage > 1) {
+      this._currentPage--;
+      this.emitPageChange();
     }
-    this.currentPage--;
-    this.emitPageChange();
   }
 
   setPageSize(value: MuiSelectableItem) {
     this.currentPageSize = Number(value.title);
+    this.pageSize = this.currentPageSize;
+    this.pageSizeChange.emit(this.currentPageSize);
+    this._currentPage = 1;
     this.emitPageChange();
   }
 
-  emitPageChange() {
+  private emitPageChange() {
     this.onChangePage.emit(new PagedData(this.totalItems, this.totalPages, this.currentPage, this.currentPageSize));
   }
 }

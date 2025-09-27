@@ -12,7 +12,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
-import { ChevronMuiIconComponent } from '../mui-icon';
+import { ChevronMuiIconComponent, CloseMuiIconComponent } from '../mui-icon';
 import { MuiLoader } from '../mui-loader/mui-loader';
 import { MuiSearchComponent } from '../mui-search/mui-search.component';
 import { MuiSelectOptionComponent } from '../mui-select-option/mui-select-option.component';
@@ -21,7 +21,7 @@ import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
 @Component({
   selector: 'mui-search-select',
   standalone: true,
-  imports: [MuiSelectOptionComponent, MuiSearchComponent, ChevronMuiIconComponent, MuiLoader],
+  imports: [MuiSelectOptionComponent, MuiSearchComponent, ChevronMuiIconComponent, MuiLoader, CloseMuiIconComponent],
   templateUrl: './mui-search-select.html',
   styleUrl: './mui-search-select.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,10 +38,10 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
 
   @ViewChild('selectContainer') private panelContainer: ElementRef<HTMLDivElement> | null = null;
 
-  protected selectedOptions: MuiSelectableItem[] = [];
-  protected panelOpened = signal(false);
+  protected selectedOptions = signal<MuiSelectableItem[]>([]);
+  protected panelOpened = signal<boolean>(false);
   protected searchEmpty = false;
-  protected selectMenuVisible = computed(() => this.panelOpened() && this.options().length > 0);
+  protected selectMenuVisible = computed(() => this.panelOpened() && (this.options().length > 0 || this.searchOptions().length > 0));
   protected dropdownButtonVisible = computed(() => (this.options().length > 0 || this.searchOptions().length > 0) && !this.searching());
   private unsubscribe: Subject<void> = new Subject<void>();
 
@@ -57,7 +57,7 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
   get placeholder(): string {
     let res = '';
 
-    this.selectedOptions.forEach(option => {
+    this.selectedOptions().forEach(option => {
       res += `${option.title}, `;
     });
 
@@ -82,12 +82,12 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
     item.selected = !item.selected;
 
     if (item.selected) {
-      this.selectedOptions.push(item);
+      this.selectedOptions.update(prev => [...prev, item]);
     } else {
-      this.selectedOptions = this.selectedOptions.filter(i => i.id !== item.id);
+      this.selectedOptions.update(prev => prev.filter(i => i.id !== item.id));
     }
 
-    this.onOptionChange.emit(this.selectedOptions);
+    this.onOptionChange.emit(this.selectedOptions());
   }
 
   private elementIsOutside(e: Event): boolean {
@@ -126,5 +126,12 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
   protected handleSearchValueChanged(searchValue: string) {
     this.searchEmpty = searchValue.trim().length === 0;
     this.onSearchChange.emit(searchValue);
+    this.panelOpened.set(true);
+  }
+
+  protected clearSelectedItems() {
+    this.selectedOptions().forEach(item => (item.selected = false));
+    this.selectedOptions.set([]);
+    this.onOptionChange.emit(this.selectedOptions());
   }
 }

@@ -12,6 +12,12 @@
         (onChange)="handleSearchValueChanged($event)"
       ></mui-search>
 
+      @if (selectedOptions().length) {
+        <button class="button-close mui-flex mui-align-items-center mui-justify-content-center" (click)="clearSelectedItems()">
+          <mui-close-icon class="mui-flex"></mui-close-icon>
+        </button>
+      }
+
       @if (dropdownButtonVisible()) {
         <mui-chevron-icon
           class="icon"
@@ -30,25 +36,25 @@
   @if (selectMenuVisible() && !searching()) {
     <div class="options-list-container" [class.rotated-panel-container]="showPanelOnTop">
       <div class="options-list mui-flex mui-flex-column mui-pad-2 mui-gap-2">
-        <div class="search-result mui-flex mui-flex-column">
-          @if (searchOptions().length > 0) {
+        @if (searchOptions().length > 0) {
+          <div class="search-result mui-flex mui-flex-column">
             <h3 class="option-list-title">Результат поиска:</h3>
             @for (item of searchOptions(); track item.id) {
               <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
               </mui-select-option>
             }
-          } @else {
-            <span class="empty-search">Ничего не найдено</span>
-          }
-        </div>
+          </div>
+        }
 
-        <div class="mui-flex mui-flex-column">
-          <h3 class="option-list-title">{{ optionsTitle() }}</h3>
-          @for (item of options(); track item.id) {
-            <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
-            </mui-select-option>
-          }
-        </div>
+        @if (searchOptions().length === 0) {
+          <div class="mui-flex mui-flex-column">
+            <h3 class="option-list-title">{{ optionsTitle() }}</h3>
+            @for (item of options(); track item.id) {
+              <mui-select-option [class.rotated]="showPanelOnTop" [multiselect]="true" [item]="item" (click)="selectItem(item)">
+              </mui-select-option>
+            }
+          </div>
+        }
       </div>
     </div>
   }

@@ -1,10 +1,10 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
-import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
-import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
 import { NgClass, NgStyle } from '@angular/common';
-import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
 import { ChevronMuiIconComponent } from '../mui-icon';
+import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
+import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
+import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
 
 export type RowIndex = {
   prefix: number;
@@ -69,6 +69,14 @@ export class MuiTableRowComponent implements OnInit {
         this.setCell(this.source[modelName]);
       }
     }
+  }
+
+  safeGetMaxWidth(index: number) {
+    if (this.columnConfig.length - 1 >= index) {
+      return this.columnConfig[index];
+    }
+
+    return 'unset';
   }
 
   get nestedLevelClass(): string {
