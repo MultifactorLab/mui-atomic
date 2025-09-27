@@ -15,6 +15,10 @@ const meta: Meta<MuiPaginationComponent> = {
   argTypes: {
     totalPages: {
       control: { type: 'number' }
+    },
+    pageSize: {
+      control: { type: 'select' },
+      options: [5, 10, 25, 50, 100]
     }
   }
 };
@@ -24,6 +28,7 @@ type Story = StoryObj<MuiPaginationComponent>;
 export const Default: Story = {
   tags: ['core'],
   args: {
-    totalPages: 1
+    totalPages: 2,
+    pageSize: 5
   }
 };
