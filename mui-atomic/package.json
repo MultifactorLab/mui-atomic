@@ -15,7 +15,8 @@
     "styles:fix": "stylelint \"**/*.scss\" --fix",
     "storybook": "ng run mui-atomic:storybook",
     "build-storybook": "ng run mui-atomic:build-storybook",
-    "prepare": "husky"
+    "prepare": "husky",
+    "yalc:push": "ng build && cd dist/mui-atomic && yalc push"
   },
   "private": true,
   "dependencies": {
