@@ -1,0 +1,134 @@
+@use '../../styles/mui.scss';
+@use '../../styles/spaces/config';
+@use 'sass:map';
+
+.input-container {
+  gap: map.get(config.$mui-half-block-sizes, '1');
+}
+
+input[type='range'] {
+  appearance: none;
+  inline-size: 100%;
+}
+
+input[type='range']:focus {
+  outline: none;
+}
+
+input[type='range']:focus-visible {
+  outline-style: solid;
+  outline-offset: 5px;
+  outline-color: var(--mui-background-accent-1);
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  inline-size: 100%;
+  block-size: 10px;
+  cursor: pointer;
+  animation: 0.2s;
+  background: var(--mui-background-accent-1);
+  border-radius: map.get(config.$mui-half-block-sizes, '2');
+}
+
+input[type='range'][intervalsize='S']::-webkit-slider-runnable-track {
+  block-size: 8px;
+}
+
+input[type='range'][intervalsize='M']::-webkit-slider-runnable-track {
+  block-size: 12px;
+}
+
+input[type='range'][intervalsize='L']::-webkit-slider-runnable-track {
+  block-size: 16px;
+}
+
+input[type='range'][fill='outline']::-webkit-slider-runnable-track {
+  background: transparent;
+  border: 1px solid var(--mui-border-normal);
+}
+
+input[type='range'][fill='outline']:hover::-webkit-slider-runnable-track {
+  border: 1px solid var(--mui-border-hover);
+}
+
+input[type='range'][fill='outline']:focus::-webkit-slider-runnable-track {
+  background: none;
+}
+
+input[type='range'][fill='outline']:focus-visible::-webkit-slider-runnable-track {
+  background: none;
+  outline-offset: 5px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  block-size: 20px;
+  inline-size: 20px;
+  border-radius: 50%;
+  background: var(--mui-background-accent-1);
+  cursor: pointer;
+  appearance: none;
+  margin-top: -5px;
+}
+
+input[type='range'][intervalsize='S']::-webkit-slider-thumb {
+  block-size: 16px;
+  inline-size: 16px;
+}
+
+input[type='range'][intervalsize='M']::-webkit-slider-thumb {
+  block-size: 20px;
+  inline-size: 20px;
+}
+
+input[type='range'][intervalsize='L']::-webkit-slider-thumb {
+  block-size: 24px;
+  inline-size: 24px;
+}
+
+input[type='range']:focus::-webkit-slider-runnable-track {
+  background: var(--mui-background-accent-1);
+}
+
+input[type='range']::-moz-range-track {
+  inline-size: 100%;
+  block-size: 10px;
+  cursor: pointer;
+  animation: 0.2s;
+  background: var(--mui-background-accent-1);
+  border-radius: map.get(config.$mui-half-block-sizes, '2');
+}
+
+input[type='range'][intervalsize='S']::-moz-range-track {
+  block-size: 8px;
+}
+
+input[type='range'][intervalsize='M']::-moz-range-track {
+  block-size: 12px;
+}
+
+input[type='range'][intervalsize='L']::-moz-range-track {
+  block-size: 16px;
+}
+
+input[type='range']::-moz-range-thumb {
+  block-size: 20px;
+  inline-size: 20px;
+  border-radius: 50%;
+  background: var(--mui-background-accent-1);
+  cursor: pointer;
+}
+
+input[type='range'][intervalsize='S']::-moz-range-thumb {
+  block-size: 16px;
+  inline-size: 16px;
+}
+
+input[type='range'][intervalsize='M']::-moz-range-thumb {
+  block-size: 20px;
+  inline-size: 20px;
+}
+
+input[type='range'][intervalsize='L']::-moz-range-thumb {
+  block-size: 24px;
+  inline-size: 24px;
+}

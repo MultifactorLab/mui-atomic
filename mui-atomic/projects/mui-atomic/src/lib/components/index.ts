@@ -8,6 +8,7 @@ export * from './mui-control-base/mui-control-base.component';
 export * from './mui-datepicker/mui-datepicker.component';
 export * from './mui-dialog/index';
 export * from './mui-icon/index';
+export * from './mui-interval/mui-interval';
 export * from './mui-loader/mui-loader';
 export * from './mui-multiselect/mui-multiselect.component';
 export * from './mui-pagination/mui-pagination.component';

@@ -1,0 +1,6 @@
+<div class="input-container mui-flex mui-flex-column">
+  @if (label().trim().length) {
+    <label [attr.for]="id()">{{ label() }}</label>
+  }
+  <input #inputEl class="input" type="range" [attr.intervalSize]="size()" [attr.fill]="fill()" [id]="id()" (input)="onInput($event)" />
+</div>
