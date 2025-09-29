@@ -1,0 +1,26 @@
+$mui-relative-sizes: (
+  'full': 100%,
+  'half': 50%
+);
+
+@each $code, $size in $mui-relative-sizes {
+  .mui-w-#{$code} {
+    width: $size;
+  }
+  .mui-min-w-#{$code} {
+    min-width: $size;
+  }
+  .mui-max-w-#{$code} {
+    max-width: $size;
+  }
+  
+  .mui-h-#{$code} {
+    height: $size;
+  }
+  .mui-min-h-#{$code} {
+    max-height: $size;
+  }
+  .mui-max-h-#{$code} {
+    max-height: $size;
+  }
+}
