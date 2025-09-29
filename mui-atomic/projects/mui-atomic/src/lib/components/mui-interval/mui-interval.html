@@ -2,5 +2,14 @@
   @if (label().trim().length) {
     <label [attr.for]="id()">{{ label() }}</label>
   }
-  <input #inputEl class="input" type="range" [attr.intervalSize]="size()" [attr.fill]="fill()" [id]="id()" (input)="onInput($event)" />
+  <input
+    #inputEl
+    class="input"
+    type="range"
+    [attr.intervalSize]="size()"
+    [attr.fill]="fill()"
+    [id]="id()"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+  />
 </div>

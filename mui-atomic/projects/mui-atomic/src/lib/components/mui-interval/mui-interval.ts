@@ -19,11 +19,14 @@ export type IntervalFill = 'filled' | 'outline';
     }
   ]
 })
-export class MuiInterval extends MuiControlBaseComponent<string> {
+export class MuiInterval extends MuiControlBaseComponent<number> {
   id = input.required<string>();
   label = input<string>('');
   size = input<IntervalSize>('S');
   fill = input<IntervalFill>('filled');
+  min = input<number>(0);
+  max = input<number>(100);
+  valuePrefix = input<string>('');
 
   private inputEl = viewChild.required<ElementRef<HTMLInputElement>>('inputEl');
 
@@ -32,14 +35,17 @@ export class MuiInterval extends MuiControlBaseComponent<string> {
 
     effect(() => {
       if (this.inputEl()) {
-        this.inputEl().nativeElement.value = this.value ?? '';
+        this.inputEl().nativeElement.value = (this.value ?? '') + this.valuePrefix();
       }
     });
   }
 
-  public onInput(event: Event): void {
+  onInput(event: Event): void {
     const newValue = (event.target as HTMLInputElement).value;
-    this.value = newValue;
-    this._onChange(newValue);
+    const convertedValue = Number(newValue);
+    const normalizedValue = isNaN(convertedValue) ? this.min() : convertedValue;
+
+    this.value = normalizedValue;
+    this._onChange(normalizedValue);
   }
 }

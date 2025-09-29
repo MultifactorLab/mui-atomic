@@ -9,6 +9,12 @@
 input[type='range'] {
   appearance: none;
   inline-size: 100%;
+  background: var(--mui-background-accent-1);
+  border-radius: map.get(config.$mui-half-block-sizes, '2');
+}
+
+input[type='range'][fill='filled'][disabled] {
+  opacity: 0.56;
 }
 
 input[type='range']:focus {
@@ -28,6 +34,10 @@ input[type='range']::-webkit-slider-runnable-track {
   animation: 0.2s;
   background: var(--mui-background-accent-1);
   border-radius: map.get(config.$mui-half-block-sizes, '2');
+}
+
+input[type='range'][fill='filled'][disabled] {
+  opacity: 0.56;
 }
 
 input[type='range'][intervalsize='S']::-webkit-slider-runnable-track {
