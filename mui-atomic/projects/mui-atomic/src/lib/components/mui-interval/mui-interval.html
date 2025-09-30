@@ -11,22 +11,27 @@
     [disabled]="disabled"
     [step]="step()"
     [value]="value ?? min()"
+    [min]="min()"
+    [max]="max()"
     [style.--value]="progress"
     (input)="onInput($event)"
   />
 
   @if (showMinMax() && !showLabels()) {
     <div class="mui-flex mui-justify-content-between mui-align-items-center">
-      <span>{{ getValueWithPrefix(min()) }}</span>
-      <span>{{ getValueWithPrefix(max()) }}</span>
+      <span class="tick-label">{{ getValueWithPrefix(min()) }}</span>
+      <span class="tick-label">{{ getValueWithPrefix(max()) }}</span>
     </div>
   }
 
   @if (showLabels()) {
-    <datalist class="mui-flex mui-justify-content-between mui-align-items-center">
+    <div class="ticks-wrapper mui-flex mui-justify-content-between">
       @for (label of labels(); track $index) {
-        <option>{{ getValueWithPrefix(label) }}</option>
+        <div class="tick mui-flex mui-justify-content-center mui-align-items-center" [style.--tick-offest.%]="$index * 0.02">
+          <div class="tick-mark"></div>
+          <div class="tick-label">{{ getValueWithPrefix(label) }}</div>
+        </div>
       }
-    </datalist>
+    </div>
   }
 </div>

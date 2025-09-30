@@ -29,6 +29,8 @@ import { IntervalSize, MuiInterval } from './mui-interval';
         [showLabels]="showLabels()"
         [labels]="labels()"
         [step]="step()"
+        [min]="min()"
+        [max]="max()"
       ></mui-interval>
     </form>
 
@@ -120,14 +122,25 @@ export const WithMinMaxShow: Story = {
   }
 };
 
-export const WithTickmarks = {
+export const WithPercentTickmarks = {
   args: {
     label: 'Прогресс выполнения',
     valuePrefix: '%',
-    labels: [0, 20, 40, 60, 80, 100],
-    step: 20,
+    labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    step: 10,
     min: 0,
     max: 100,
+    showLabels: true
+  }
+};
+
+export const WithPxTickmarks = {
+  args: {
+    valuePrefix: 'px',
+    labels: [8, 16, 24, 32],
+    step: 8,
+    min: 8,
+    max: 32,
     showLabels: true
   }
 };

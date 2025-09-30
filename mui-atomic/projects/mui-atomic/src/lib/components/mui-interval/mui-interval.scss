@@ -7,38 +7,26 @@
   --thumb-size: 1.125em;
 }
 
-// option {
-//   position: relative;
-//   width: 0.75em;
-// }
-
-// option::before {
-//   content: '';
-//   position: absolute;
-//   top: -2em;
-//   left: 0.5em;
-//   width: 0.25em;
-//   height: 2em;
-//   background: var(--mui-background-accent-1-pressed);
-//   z-index: -1;
-// }
-
 .range {
   gap: 0.5em;
   overflow: hidden;
+  box-sizing: border-box;
+  padding-inline-end: 0.15em;
 }
 
 .input {
-  --value: 50;
+  --value: 0;
   accent-color: var(--mui-background-accent-1);
   appearance: none;
   background: none;
   height: 2em;
   inline-size: 100%;
+  cursor: pointer;
 }
 
 .input[disabled] {
   opacity: 0.56;
+  cursor: unset;
 }
 
 .input:focus-visible {
@@ -151,4 +139,27 @@
 
 .input[intervalsize='L']::-moz-range-thumb {
   --thumb-size: 1.75em;
+}
+
+.tick {
+  --tick-offest: 0%;
+  position: relative;
+}
+
+.tick-mark {
+  position: absolute;
+  top: calc((var(--track-height) + 1.4em) * -1);
+  width: 2px;
+  height: calc(var(--thumb-size) - 0.2em);
+  background-color: var(--mui-background-accent-1-pressed);
+  z-index: -1;
+}
+
+.tick:first-child .tick-mark,
+.tick:last-child .tick-mark {
+  display: none;
+}
+
+.tick-label {
+  font-size: 0.75em;
 }
