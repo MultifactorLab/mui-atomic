@@ -32,7 +32,7 @@ export const Default: Story = {
   tags: ['core'],
   args: {
     buttonStyle: 'primary',
-    size: 'full-width',
+    size: 'xs',
     height: 'normal'
   },
   render: args => ({
