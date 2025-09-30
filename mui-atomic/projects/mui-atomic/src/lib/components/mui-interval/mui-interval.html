@@ -1,15 +1,32 @@
-<div class="input-container mui-flex mui-flex-column">
+<div class="range mui-flex mui-flex-column">
   @if (label().trim().length) {
-    <label [attr.for]="id()">{{ label() }}</label>
+    <label class="lablel" [attr.for]="id()">{{ label() }}</label>
   }
+
   <input
-    #inputEl
     class="input"
     type="range"
     [attr.intervalSize]="size()"
-    [attr.fill]="fill()"
     [id]="id()"
     [disabled]="disabled"
+    [step]="step()"
+    [value]="value ?? min()"
+    [style.--value]="progress"
     (input)="onInput($event)"
   />
+
+  @if (showMinMax() && !showLabels()) {
+    <div class="mui-flex mui-justify-content-between mui-align-items-center">
+      <span>{{ getValueWithPrefix(min()) }}</span>
+      <span>{{ getValueWithPrefix(max()) }}</span>
+    </div>
+  }
+
+  @if (showLabels()) {
+    <datalist class="mui-flex mui-justify-content-between mui-align-items-center">
+      @for (label of labels(); track $index) {
+        <option>{{ getValueWithPrefix(label) }}</option>
+      }
+    </datalist>
+  }
 </div>
