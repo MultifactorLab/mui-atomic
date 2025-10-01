@@ -6,19 +6,19 @@ import { MuiControlBaseComponent } from '../mui-control-base/mui-control-base.co
 export type IntervalSize = Extract<Size, 'S' | 'M' | 'L'>;
 
 @Component({
-  selector: 'mui-interval',
+  selector: 'mui-slider',
   imports: [],
-  templateUrl: './mui-interval.html',
-  styleUrl: './mui-interval.scss',
+  templateUrl: './mui-slider.html',
+  styleUrl: './mui-slider.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MuiInterval),
+      useExisting: forwardRef(() => MuiSlider),
       multi: true
     }
   ]
 })
-export class MuiInterval extends MuiControlBaseComponent<number> {
+export class MuiSlider extends MuiControlBaseComponent<number> {
   id = input.required<string>();
   label = input<string>('');
   size = input<IntervalSize>('S');

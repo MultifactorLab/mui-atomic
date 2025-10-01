@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MuiInterval } from './mui-interval';
+import { MuiSlider } from './mui-slider';
 
-describe('MuiInterval', () => {
-  let component: MuiInterval;
-  let fixture: ComponentFixture<MuiInterval>;
+describe('MuiSlider', () => {
+  let component: MuiSlider;
+  let fixture: ComponentFixture<MuiSlider>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MuiInterval]
-    })
-    .compileComponents();
+      imports: [MuiSlider]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(MuiInterval);
+    fixture = TestBed.createComponent(MuiSlider);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,12 +1,12 @@
 import { Component, effect, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { IntervalSize, MuiInterval } from './mui-interval';
+import { IntervalSize, MuiSlider } from './mui-slider';
 
 @Component({
-  selector: 'storybook-mui-interval-wrapper',
+  selector: 'storybook-mui-slider-wrapper',
   standalone: true,
-  imports: [ReactiveFormsModule, MuiInterval],
+  imports: [ReactiveFormsModule, MuiSlider],
   template: `
     <style>
       .no-component-info {
@@ -19,7 +19,7 @@ import { IntervalSize, MuiInterval } from './mui-interval';
       }
     </style>
     <form>
-      <mui-interval
+      <mui-slider
         id="some-id"
         [label]="label()"
         [size]="size()"
@@ -31,7 +31,7 @@ import { IntervalSize, MuiInterval } from './mui-interval';
         [step]="step()"
         [min]="min()"
         [max]="max()"
-      ></mui-interval>
+      ></mui-slider>
     </form>
 
     <div class="no-component-info">
@@ -69,7 +69,7 @@ class StorybookMuiIntervalWrapper {
 }
 
 const meta: Meta<StorybookMuiIntervalWrapper> = {
-  title: 'Design System/Inputs/Interval',
+  title: 'Design System/Inputs/Slider',
   component: StorybookMuiIntervalWrapper,
   decorators: [
     moduleMetadata({
