@@ -1,0 +1,37 @@
+<div class="range mui-flex mui-flex-column">
+  @if (label().trim().length) {
+    <label class="lablel" [attr.for]="id()">{{ label() }}</label>
+  }
+
+  <input
+    class="input"
+    type="range"
+    [attr.intervalSize]="size()"
+    [id]="id()"
+    [disabled]="disabled"
+    [step]="step()"
+    [value]="value ?? min()"
+    [min]="min()"
+    [max]="max()"
+    [style.--value]="progress"
+    (input)="onInput($event)"
+  />
+
+  @if (showMinMax() && !showLabels()) {
+    <div class="mui-flex mui-justify-content-between mui-align-items-center">
+      <span class="tick-label">{{ getValueWithPrefix(min()) }}</span>
+      <span class="tick-label">{{ getValueWithPrefix(max()) }}</span>
+    </div>
+  }
+
+  @if (showLabels()) {
+    <div class="ticks-wrapper mui-flex mui-justify-content-between">
+      @for (label of labels(); track $index) {
+        <div class="tick mui-flex mui-justify-content-center mui-align-items-center" [style.--tick-offest.%]="$index * 0.02">
+          <div class="tick-mark"></div>
+          <div class="tick-label">{{ getValueWithPrefix(label) }}</div>
+        </div>
+      }
+    </div>
+  }
+</div>

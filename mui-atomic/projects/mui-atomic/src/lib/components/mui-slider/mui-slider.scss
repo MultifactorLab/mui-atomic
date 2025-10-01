@@ -1,0 +1,165 @@
+@use '../../styles/mui.scss';
+@use '../../styles/spaces/config';
+@use 'sass:map';
+
+:host {
+  --track-height: 0.5em;
+  --thumb-size: 1.125em;
+}
+
+.range {
+  gap: 0.5em;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-inline-end: 0.15em;
+}
+
+.input {
+  --value: 0;
+  accent-color: var(--mui-background-accent-1);
+  appearance: none;
+  background: none;
+  height: 2em;
+  inline-size: 100%;
+  cursor: pointer;
+}
+
+.input[disabled] {
+  opacity: 0.56;
+  cursor: unset;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.input::-webkit-slider-runnable-track {
+  height: var(--track-height);
+  border-radius: map.get(config.$mui-half-block-sizes, '2');
+  background: linear-gradient(
+    90deg,
+    var(--mui-background-accent-1) calc(var(--value) * 1%),
+    var(--mui-background-neutral-1) calc(var(--value) * 1%)
+  );
+}
+
+.input[intervalsize='S']::-webkit-slider-runnable-track {
+  --track-height: 0.5em;
+}
+
+.input[intervalsize='M']::-webkit-slider-runnable-track {
+  --track-height: 0.75em;
+}
+
+.input[intervalsize='L']::-webkit-slider-runnable-track {
+  --track-height: 1em;
+}
+
+.input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: none;
+  border-radius: 50%;
+  background: var(--mui-background-accent-1);
+  transform: translateY(-30%);
+}
+
+.input[intervalsize='S']::-webkit-slider-thumb {
+  --thumb-size: 1.25em;
+  transform: translateY(-30%);
+}
+
+.input[intervalsize='M']::-webkit-slider-thumb {
+  --thumb-size: 1.5em;
+  transform: translateY(-25%);
+}
+
+.input[intervalsize='L']::-webkit-slider-thumb {
+  --thumb-size: 1.75em;
+  transform: translateY(-20%);
+}
+
+.input:focus-visible::-webkit-slider-runnable-track {
+  outline-offset: 0.5em;
+  outline: 1px solid var(--mui-background-accent-1);
+}
+
+// firefox
+.input::-moz-range-track {
+  background: var(--mui-background-neutral-1);
+}
+
+.input::-moz-range-progress {
+  background: var(--mui-background-accent-1);
+}
+
+.input::-moz-range-track,
+.input::-moz-range-progress {
+  height: var(--track-height);
+  border-radius: map.get(config.$mui-half-block-sizes, '2');
+  inline-size: 100%;
+}
+
+.input:focus-visible::-moz-range-track {
+  outline-offset: 0.5em;
+  outline: 1px solid var(--mui-background-accent-1);
+}
+
+.input[intervalsize='S']::-moz-range-track,
+.input[intervalsize='S']::-moz-range-progress {
+  --track-height: 0.5em;
+}
+
+.input[intervalsize='M']::-moz-range-track,
+.input[intervalsize='M']::-moz-range-progress {
+  --track-height: 0.75em;
+}
+
+.input[intervalsize='L']::-moz-range-track,
+.input[intervalsize='L']::-moz-range-progress {
+  --track-height: 1em;
+}
+
+.input::-moz-range-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: none;
+  border-radius: 50%;
+  background: var(--mui-background-accent-1);
+}
+
+.input[intervalsize='S']::-moz-range-thumb {
+  --thumb-size: 1.25em;
+}
+
+.input[intervalsize='M']::-moz-range-thumb {
+  --thumb-size: 1.5em;
+}
+
+.input[intervalsize='L']::-moz-range-thumb {
+  --thumb-size: 1.75em;
+}
+
+.tick {
+  --tick-offest: 0%;
+  position: relative;
+}
+
+.tick-mark {
+  position: absolute;
+  top: calc((var(--track-height) + 1.4em) * -1);
+  width: 2px;
+  height: calc(var(--thumb-size) - 0.2em);
+  background-color: var(--mui-background-accent-1-pressed);
+  z-index: -1;
+}
+
+.tick:first-child .tick-mark,
+.tick:last-child .tick-mark {
+  display: none;
+}
+
+.tick-label {
+  font-size: 0.75em;
+}

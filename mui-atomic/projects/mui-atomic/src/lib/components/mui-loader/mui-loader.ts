@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, input, Signal } from '@angular/core';
+import { Size } from '../../core/options';
 
-type Size = {
+type LoaderSettings = {
   width: number;
   padding: number;
 };
 
-const DEFALUT_SIZE: Size = { width: 24, padding: 4 };
+const DEFALUT_SIZE: LoaderSettings = { width: 24, padding: 4 };
 
-export type LoaderSize = 'S' | 'M' | 'L' | 'XL';
-export const LoaderSizes = new Map<LoaderSize, Size>([
+export type LoaderSize = Extract<Size, 'S' | 'M' | 'L' | 'XL'>;
+export const LoaderSizes = new Map<LoaderSize, LoaderSettings>([
   ['S', { width: 16, padding: 2 }],
   ['M', DEFALUT_SIZE],
   ['L', { width: 32, padding: 6 }],
@@ -26,5 +27,5 @@ export const LoaderSizes = new Map<LoaderSize, Size>([
 export class MuiLoader {
   size = input<LoaderSize>('M');
 
-  protected settings: Signal<Size> = computed(() => LoaderSizes.get(this.size()) ?? DEFALUT_SIZE);
+  protected settings: Signal<LoaderSettings> = computed(() => LoaderSizes.get(this.size()) ?? DEFALUT_SIZE);
 }

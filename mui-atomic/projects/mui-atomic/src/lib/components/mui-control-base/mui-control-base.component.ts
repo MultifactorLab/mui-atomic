@@ -1,19 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
   template: ``,
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MuiControlBaseComponent<T> implements ControlValueAccessor, OnDestroy {
   @Input() disabled: boolean = false;
@@ -33,11 +25,7 @@ export class MuiControlBaseComponent<T> implements ControlValueAccessor, OnDestr
     this.cdr.detectChanges();
   }
 
-  constructor(protected cdr: ChangeDetectorRef) {
-  }
-
   innerValue: T | undefined;
-
   get value(): T | undefined {
     return this.innerValue;
   }
@@ -48,6 +36,8 @@ export class MuiControlBaseComponent<T> implements ControlValueAccessor, OnDestr
       this._onChange(v);
     }
   }
+
+  protected readonly cdr = inject(ChangeDetectorRef);
 
   protected _onChange = (value: T) => {};
   protected _onTouched = () => {};

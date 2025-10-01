@@ -19,6 +19,7 @@ export * from './mui-search/mui-search.component';
 export * from './mui-select-option/mui-select-option.component';
 export * from './mui-select-option/mui-selectable-item';
 export * from './mui-select/mui-select.component';
+export * from './mui-slider/mui-slider';
 export * from './mui-table-body/mui-table-body.component';
 export * from './mui-table-cell/mui-table-cell';
 export * from './mui-table-cell/mui-table-cell.component';

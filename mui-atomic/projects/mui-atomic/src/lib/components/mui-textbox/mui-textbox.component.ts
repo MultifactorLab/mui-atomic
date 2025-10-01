@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MuiControlBaseComponent } from '../mui-control-base/mui-control-base.component';
 
@@ -27,8 +27,4 @@ export class MuiTextboxComponent extends MuiControlBaseComponent<string> {
   @Input() type: InputType = 'text';
   @Input() autocompleted: boolean = false;
   @Input() autofocused: boolean = false;
-
-  constructor(cdr: ChangeDetectorRef) {
-    super(cdr);
-  }
 }
