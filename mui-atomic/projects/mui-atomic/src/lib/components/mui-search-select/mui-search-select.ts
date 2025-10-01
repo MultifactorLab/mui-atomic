@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   ElementRef,
+  HostListener,
   input,
   OnDestroy,
   OnInit,
@@ -52,6 +53,12 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscHandler(event: KeyboardEvent) {
+    this.panelOpened.set(false);
+    event.stopPropagation();
   }
 
   get placeholder(): string {
@@ -126,10 +133,10 @@ export class MuiSearchSelect implements OnInit, OnDestroy {
   protected handleSearchValueChanged(searchValue: string) {
     this.searchEmpty = searchValue.trim().length === 0;
     this.onSearchChange.emit(searchValue);
-    this.panelOpened.set(true);
+    this.panelOpened.set(!this.searchEmpty);
   }
 
-  protected clearSelectedItems() {
+  protected clearSearch() {
     this.selectedOptions().forEach(item => (item.selected = false));
     this.selectedOptions.set([]);
     this.onOptionChange.emit(this.selectedOptions());
