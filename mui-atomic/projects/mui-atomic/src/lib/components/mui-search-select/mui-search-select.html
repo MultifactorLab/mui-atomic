@@ -12,12 +12,6 @@
         (onChange)="handleSearchValueChanged($event)"
       ></mui-search>
 
-      @if (selectedOptions().length) {
-        <button class="button-close mui-flex mui-align-items-center mui-justify-content-center" (click)="clearSearch()">
-          <mui-close-icon class="mui-flex"></mui-close-icon>
-        </button>
-      }
-
       @if (dropdownButtonVisible()) {
         <mui-chevron-icon
           class="icon"

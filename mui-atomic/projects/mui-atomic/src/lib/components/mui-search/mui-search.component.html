@@ -1,12 +1,6 @@
 <div class="input-with-icon-container mui-flex mui-align-items-center mui-px-1">
   <mui-search-icon class="mui-flex icon-inside-input"></mui-search-icon>
   <form class="mui-w-full" [formGroup]="form">
-    <mui-textbox
-      formControlName="search"
-      name="search"
-      class="input-with-icon"
-      (focusout)="onFocusOut()"
-      [placeholder]="placeholder()"
-    ></mui-textbox>
+    <mui-textbox formControlName="search" name="search" class="input-with-icon" [placeholder]="placeholder()"></mui-textbox>
   </form>
 </div>

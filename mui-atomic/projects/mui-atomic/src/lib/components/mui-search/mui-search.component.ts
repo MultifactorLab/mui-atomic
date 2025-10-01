@@ -34,7 +34,7 @@ export class MuiSearchComponent implements OnInit {
   disabled = input<boolean>(false);
   onChange = output<string>();
 
-  protected form = new FormGroup<SearchForm>({
+  protected readonly form = new FormGroup<SearchForm>({
     search: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] })
   });
 
@@ -55,10 +55,6 @@ export class MuiSearchComponent implements OnInit {
   }
 
   @HostListener('keydown.enter') protected onEnterListener() {
-    this.onChange.emit(this.value);
-  }
-
-  protected onFocusOut() {
     this.onChange.emit(this.value);
   }
 
