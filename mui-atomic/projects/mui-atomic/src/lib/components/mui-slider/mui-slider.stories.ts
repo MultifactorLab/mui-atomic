@@ -41,7 +41,7 @@ import { IntervalSize, MuiSlider } from './mui-slider';
     </div>
   `
 })
-class StorybookMuiIntervalWrapper {
+class StorybookMuiSliderWrapper {
   size = input<IntervalSize>('S');
   label = input<string>('');
   min = input<number>(0);
@@ -68,9 +68,9 @@ class StorybookMuiIntervalWrapper {
   }
 }
 
-const meta: Meta<StorybookMuiIntervalWrapper> = {
+const meta: Meta<StorybookMuiSliderWrapper> = {
   title: 'Design System/Inputs/Slider',
-  component: StorybookMuiIntervalWrapper,
+  component: StorybookMuiSliderWrapper,
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule]
@@ -103,7 +103,7 @@ const meta: Meta<StorybookMuiIntervalWrapper> = {
 };
 
 export default meta;
-type Story = StoryObj<StorybookMuiIntervalWrapper>;
+type Story = StoryObj<StorybookMuiSliderWrapper>;
 
 export const Default: Story = {
   args: {
