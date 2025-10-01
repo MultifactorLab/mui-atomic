@@ -10,7 +10,8 @@
   [autofocus]="autofocused"
   [disabled]="disabled"
   [placeholder]="placeholderOnTop ? '' : placeholder"
-  [(ngModel)]="value"
+  [value]="safeValue"
   (blur)="onBlur()"
   (focus)="onFocus()"
+  (input)="onInput($event)"
 />

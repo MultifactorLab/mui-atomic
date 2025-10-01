@@ -9,6 +9,9 @@
   font-size: 1em;
   font-weight: 400;
   color: var(--mui-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input {

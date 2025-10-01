@@ -53,7 +53,6 @@ export const WithSearchOptions: Story = {
   args: {
     title: 'Заголовок',
     optionsTitle: 'Заказчики на странице',
-    searchOptions: [new MuiSelectableItem('Опция 1'), new MuiSelectableItem('Опция 2')],
-    options: [new MuiSelectableItem('Опция 3'), new MuiSelectableItem('Опция 4')]
+    searchOptions: [new MuiSelectableItem('Опция 1'), new MuiSelectableItem('Опция 2')]
   }
 };
