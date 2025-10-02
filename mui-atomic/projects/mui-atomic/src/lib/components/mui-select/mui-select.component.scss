@@ -50,9 +50,9 @@ select {
 
 .options-list {
   position: absolute;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--mui-border-normal);
   border-radius: 0.5em;
-  background-color: white;
+  background-color: var(--mui-background-base);
   width: 100%;
   max-width: 350px;
   overflow: auto;

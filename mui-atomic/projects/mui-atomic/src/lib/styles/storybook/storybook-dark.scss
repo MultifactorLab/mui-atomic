@@ -1,0 +1,79 @@
+.storybook-dark {
+    --mui-background-base: #121212;
+    --mui-background-base-alt: #1c1c1c;
+    --mui-background-neutral-1: rgba(255, 255, 255, 0.06);
+    --mui-background-neutral-1-hover: rgba(255, 255, 255, 0.1);
+    --mui-background-neutral-1-pressed: rgba(255, 255, 255, 0.14);
+    --mui-background-neutral-2: rgba(255, 255, 255, 0.08);
+    --mui-background-neutral-2-hover: rgba(255, 255, 255, 0.12);
+    --mui-background-neutral-2-pressed: rgba(255, 255, 255, 0.18);
+    
+    --mui-background-accent-1: #e53935;
+    --mui-background-accent-1-hover: #f45151;
+    --mui-background-accent-1-pressed: #b71c1c;
+    --mui-background-accent-2: #e53935;
+    --mui-background-accent-2-hover: #f45151;
+    --mui-background-accent-2-pressed: #b71c1c;
+    --mui-background-accent-opposite: #ffffff;
+    --mui-background-accent-opposite-hover: #dddddd;
+    --mui-background-accent-opposite-pressed: #999999;
+    
+    --mui-background-elevation-1: rgb(28, 28, 28, 0.9);
+    --mui-background-elevation-2: rgb(34, 34, 34, 0.9);
+    --mui-background-elevation-3: rgb(42, 42, 42, 0.9);
+    
+    --mui-service-autofill-background: #2c2c2c;
+    --mui-service-selection-background: rgba(229, 57, 53, 0.24);
+    --mui-service-backdrop: rgba(0, 0, 0, 0.75);
+    
+    --mui-border-normal: rgba(255, 255, 255, 0.1);
+    --mui-border-hover: rgba(255, 255, 255, 0.2);
+    --mui-border-focus: rgba(255, 255, 255, 0.4);
+    
+    --mui-status-negative: #e57373;
+    --mui-status-negative-pale: rgba(229, 57, 53, 0.24);
+    --mui-status-negative-pale-hover: rgba(229, 57, 53, 0.32);
+    
+    --mui-status-positive: #81c784;
+    --mui-status-positive-pale: rgba(129, 199, 132, 0.24);
+    --mui-status-positive-pale-hover: rgba(129, 199, 132, 0.32);
+    
+    --mui-status-warning: #ffca28;
+    --mui-status-warning-pale: rgba(255, 202, 40, 0.24);
+    --mui-status-warning-pale-hover: rgba(255, 202, 40, 0.32);
+    
+    --mui-status-info: #90a4ae;
+    --mui-status-info-pale: rgba(144, 164, 174, 0.24);
+    --mui-status-info-pale-hover: rgba(144, 164, 174, 0.32);
+    
+    --mui-status-neutral: #b0b0b0;
+    
+    --mui-text-primary: #ffffff;
+    --mui-text-secondary: rgba(255, 255, 255, 0.75);
+    --mui-text-tertiary: rgba(255, 255, 255, 0.5);
+    --mui-text-primary-on-accent-1: #ffffff;
+    --mui-text-primary-on-accent-2: #ffffff;
+    --mui-text-action: #f45151;
+    --mui-text-action-hover: #ff7961;
+    --mui-text-positive: #81c784;
+    --mui-text-positive-hover: #a5d6a7;
+    --mui-text-negative: #ef5350;
+    --mui-text-negative-hover: #e57373;
+    
+    --mui-chart-categorical-00: #e53935;
+    --mui-chart-categorical-01: #ffffff;
+    --mui-chart-categorical-02: #bbbbbb;
+    --mui-chart-categorical-03: #666666;
+    --mui-chart-categorical-04: #333333;
+    --mui-chart-categorical-05: #f45151;
+    
+    --mui-shadow-small: 0 2px 6px rgba(0, 0, 0, 0.6);
+    --mui-shadow-small-hover: 0 4px 10px rgba(0, 0, 0, 0.7);
+    --mui-shadow-medium: 0 6px 16px rgba(0, 0, 0, 0.75);
+    --mui-shadow-medium-hover: 0 10px 24px rgba(0, 0, 0, 0.8);
+    --mui-shadow-popup: 0 12px 28px rgba(0, 0, 0, 0.9);
+}
+
+ storybook-root {
+    background: var(--mui-background-base);
+ }

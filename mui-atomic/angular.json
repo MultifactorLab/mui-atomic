@@ -38,7 +38,11 @@
             "browserTarget": "mui-atomic:build",
             "compodoc": false,
             "port": 6006,
-            "styles": ["projects/mui-atomic/src/lib/styles/theme/palette.scss", "projects/mui-atomic/src/lib/styles/theme/typography.scss"]
+            "styles": [
+              "projects/mui-atomic/src/lib/styles/theme/palette.scss",
+              "projects/mui-atomic/src/lib/styles/theme/typography.scss",
+              "projects/mui-atomic/src/lib/styles/storybook/storybook-dark.scss"
+            ]
           }
         },
         "build-storybook": {
