@@ -61,15 +61,18 @@
 }
 
 .secondary {
-  background-color: var(--mui-background-neutral-1);
+  background-color: var(--mui-background-base-alt);
+  border: 1px solid var(--mui-border-normal);
   color: var(--mui-text-action);
 
   &:hover {
+    border: 1px solid var(--mui-border-hover);
     background-color: var(--mui-background-neutral-1-hover);
     color: var(--mui-text-action-hover);
   }
 
   &:active {
+    border: 1px solid var(--mui-border-hover);
     background-color: var(--mui-background-neutral-1-pressed);
     color: var(--mui-text-action-hover);
   }
