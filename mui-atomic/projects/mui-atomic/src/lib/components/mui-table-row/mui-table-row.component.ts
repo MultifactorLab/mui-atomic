@@ -1,5 +1,5 @@
 import { NgClass, NgStyle } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, Output, signal, WritableSignal } from '@angular/core';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
 import { ChevronMuiIconComponent } from '../mui-icon';
 import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
@@ -20,7 +20,7 @@ export type NestedLevel = 0 | 1 | 2;
   imports: [MuiTableCellComponent, NgStyle, MuiBadgeComponent, NgClass, ChevronMuiIconComponent],
   styleUrl: './mui-table-row.component.scss'
 })
-export class MuiTableRowComponent implements OnInit {
+export class MuiTableRowComponent implements OnChanges {
   @Input() canExpand = false;
   @Input() hasAccordionInTable: boolean = false;
   @Input() source!: any;
@@ -48,7 +48,13 @@ export class MuiTableRowComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.generateCells();
+  }
+
+  private generateCells() {
+    this.cells = [];
+
     if (this.isHeaderRow) {
       this.cells = this.columnConfig.map(x => new MuiTableCell(x.title!));
     } else {
@@ -69,11 +75,13 @@ export class MuiTableRowComponent implements OnInit {
         this.setCell(this.source[modelName]);
       }
     }
+
+    this.cells = this.cells.slice();
   }
 
   safeGetMaxWidth(index: number) {
     if (this.columnConfig.length - 1 >= index) {
-      return this.columnConfig[index];
+      return this.columnConfig[index].maxWidth;
     }
 
     return 'unset';
