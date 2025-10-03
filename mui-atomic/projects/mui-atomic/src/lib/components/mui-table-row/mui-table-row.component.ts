@@ -73,7 +73,7 @@ export class MuiTableRowComponent implements OnInit {
 
   safeGetMaxWidth(index: number) {
     if (this.columnConfig.length - 1 >= index) {
-      return this.columnConfig[index];
+      return this.columnConfig[index].maxWidth;
     }
 
     return 'unset';
