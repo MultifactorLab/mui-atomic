@@ -21,15 +21,20 @@ export type InputType = 'text' | 'number' | 'email' | 'search';
 })
 export class MuiTextboxComponent extends MuiControlBaseComponent<string> {
   @Input() padding: 'normal' | 'with-icon' = 'normal';
-  @Input() placeholder: string | undefined;
+  @Input() placeholder: string = '';
   @Input() name: string = '';
   @Input() placeholderOnTop = false;
   @Input() type: InputType = 'text';
   @Input() autocompleted: boolean = false;
   @Input() autofocused: boolean = false;
+  @Input() required: boolean = false;
 
   get safeValue(): string {
     return this.value ?? '';
+  }
+
+  get extendedPlaceholder(): string {
+    return this.required ? `${this.placeholder} (обязательное поле)` : this.placeholder;
   }
 
   protected onInput(event: Event): void {

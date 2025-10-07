@@ -1,5 +1,5 @@
 @if (placeholderOnTop) {
-  <label for="{{ name }}">{{ placeholder }}</label>
+  <label for="{{ name }}">{{ extendedPlaceholder }}</label>
 }
 <input
   #input
@@ -9,8 +9,9 @@
   [autocomplete]="autocompleted"
   [autofocus]="autofocused"
   [disabled]="disabled"
-  [placeholder]="placeholderOnTop ? '' : placeholder"
+  [placeholder]="placeholderOnTop ? '' : extendedPlaceholder"
   [value]="safeValue"
+  [required]="required"
   (blur)="onBlur()"
   (focus)="onFocus()"
   (input)="onInput($event)"
