@@ -25,6 +25,9 @@ const meta: Meta<MuiTextboxComponent> = {
     },
     placeholderOnTop: {
       control: { type: 'boolean' }
+    },
+    required: {
+      control: { type: 'boolean' }
     }
   }
 };
@@ -37,17 +40,18 @@ export const Default: Story = {
     type: 'text',
     padding: 'normal',
     placeholder: 'Подсказка',
-    placeholderOnTop: false
+    placeholderOnTop: false,
+    required: false
   }
 };
 
-export const Autofocused: Story = {
+export const AsFormInput: Story = {
   tags: ['core', 'input'],
   args: {
     type: 'text',
     padding: 'normal',
-    placeholder: 'Подсказка',
-    placeholderOnTop: false,
-    autofocused: true
+    placeholder: 'Имя',
+    placeholderOnTop: true,
+    required: true
   }
 };

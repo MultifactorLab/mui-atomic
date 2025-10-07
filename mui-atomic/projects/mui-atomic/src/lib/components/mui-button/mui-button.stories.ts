@@ -22,6 +22,9 @@ const meta: Meta<MuiButtonComponent> = {
     height: {
       control: { type: 'select' },
       options: ['normal', 'as-control']
+    },
+    disabled: {
+      control: { type: 'boolean' }
     }
   }
 };
@@ -33,12 +36,13 @@ export const Default: Story = {
   args: {
     buttonStyle: 'primary',
     size: 'xs',
-    height: 'normal'
+    height: 'normal',
+    disabled: false
   },
   render: args => ({
     props: args,
     template: `
-      <mui-button [buttonStyle]="buttonStyle" [size]="size" [height]="height">
+      <mui-button [disabled]="disabled" [buttonStyle]="buttonStyle" [size]="size" [height]="height">
         Кнопка
       </mui-button>
     `

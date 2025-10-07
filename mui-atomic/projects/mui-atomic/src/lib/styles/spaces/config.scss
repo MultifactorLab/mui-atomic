@@ -97,3 +97,19 @@ $mui-half-block-sizes: (
     padding-block-start: $size;
   }
 }
+
+.mui-mis-auto {
+  margin-inline-start: auto;
+}
+
+.mui-mie-auto {
+  margin-inline-end: auto;
+}
+
+.mui-mbs-auto {
+  margin-block-start: auto;
+}
+
+.mui-mbe-auto {
+  margin-block-end: auto;
+}

@@ -12,4 +12,5 @@ export class MuiButtonComponent {
   @Input() buttonStyle: 'primary' | 'secondary' | 'outline' | 'alert' = 'primary';
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full-width' = 'md';
   @Input() height: 'normal' | 'as-control' = 'normal';
+  @Input() disabled = false;
 }
