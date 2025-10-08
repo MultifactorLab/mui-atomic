@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { MuiTableColumnDefinition } from '../mui-table/mui-table.config';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MuiTableRowComponent } from '../mui-table-row/mui-table-row.component';
+import { MuiTableColumnDefinition } from '../mui-table/mui-table.config';
 
 @Component({
   selector: 'mui-table-head',
-  standalone: true,
   templateUrl: './mui-table-head.component.html',
   imports: [MuiTableRowComponent],
   styleUrl: './mui-table-head.component.scss'
@@ -12,4 +11,5 @@ import { MuiTableRowComponent } from '../mui-table-row/mui-table-row.component';
 export class MuiTableHeadComponent {
   @Input() columns: MuiTableColumnDefinition[] = [];
   @Input() hasAccordionInTable: boolean = false;
+  @Output() onCellClick: EventEmitter<any> = new EventEmitter();
 }

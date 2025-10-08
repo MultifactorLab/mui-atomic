@@ -1,15 +1,27 @@
-<div class="row-container" [ngClass]="nestedLevelClass">
+<div class="row-container" [ngClass]="nestedLevelClass" [class.not-header-row]="!isHeaderRow">
   @if (canExpand && !isHeaderRow) {
     <mui-chevron-icon class="icon" [class.icon-rotated]="opened()"></mui-chevron-icon>
   }
 
   @for (cell of cells; track cell.id; let i = $index) {
-    <mui-table-cell [ngStyle]="{ 'max-width.px': safeGetMaxWidth(i) }" [class.offset-row]="needsMoveFirstCell(i)">
+    <mui-table-cell
+      [ngStyle]="{ 'max-width.px': safeGetMaxWidth(i) }"
+      [class.offset-row]="needsMoveFirstCell(i)"
+      (click)="handleCellClick(cell)"
+    >
       @if (isBadgeCell(cell)) {
         <mui-badge [style]="getBadgeCellStyle(cell)" [text]="cell.content!"></mui-badge>
       }
+
       @if (isTextCell(cell)) {
         {{ cell.content }}
+      }
+
+      @if (isSortCell(cell)) {
+        <div class="mui-flex mui-gap-1 mui-align-items-center mui-justify-content-center">
+          <mui-chevron-icon class="chevron-icon" [class.chevron-icon-descending]="isDescendingCell(cell)"></mui-chevron-icon>
+          <span>{{ cell.content }}</span>
+        </div>
       }
     </mui-table-cell>
   }

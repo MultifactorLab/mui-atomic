@@ -2,7 +2,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, OnChanges, Output, signal, WritableSignal } from '@angular/core';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
 import { ChevronMuiIconComponent } from '../mui-icon';
-import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
+import { MuiBadgeTableCell, MuiSortTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
 import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
 
@@ -15,7 +15,6 @@ export type NestedLevel = 0 | 1 | 2;
 
 @Component({
   selector: 'mui-table-row',
-  standalone: true,
   templateUrl: './mui-table-row.component.html',
   imports: [MuiTableCellComponent, NgStyle, MuiBadgeComponent, NgClass, ChevronMuiIconComponent],
   styleUrl: './mui-table-row.component.scss'
@@ -30,7 +29,7 @@ export class MuiTableRowComponent implements OnChanges {
   @Input() currentPage: number = 1;
   @Input() columnConfig: MuiTableColumnDefinition[] = [];
   @Input() nestedLevel: NestedLevel = 0;
-  @Output() onRowClick: EventEmitter<any> = new EventEmitter();
+  @Output() onCellClick: EventEmitter<MuiTableCell> = new EventEmitter();
 
   protected opened: WritableSignal<boolean> = signal<boolean>(false);
   protected cells: MuiTableCell[] = [];
@@ -52,11 +51,15 @@ export class MuiTableRowComponent implements OnChanges {
     this.generateCells();
   }
 
+  get nestedLevelClass(): string {
+    return this.levelClassMap[this.nestedLevel] || '';
+  }
+
   private generateCells() {
     this.cells = [];
 
     if (this.isHeaderRow) {
-      this.cells = this.columnConfig.map(x => new MuiTableCell(x.title!));
+      this.cells = this.columnConfig.map(columnDef => this.generateColumnCell(columnDef));
     } else {
       const length = this.columnConfig.length;
       for (let i = 0; i < length; i++) {
@@ -79,16 +82,26 @@ export class MuiTableRowComponent implements OnChanges {
     this.cells = this.cells.slice();
   }
 
-  safeGetMaxWidth(index: number) {
+  private generateColumnCell(columnDefinition: MuiTableColumnDefinition) {
+    const isColumnDefinition = columnDefinition instanceof MuiTableResolvableColumnDefinition;
+
+    if (isColumnDefinition) {
+      const cell = columnDefinition.cellFactory(columnDefinition.title ?? '');
+
+      if (isColumnDefinition && cell.type === 'sort') {
+        return cell;
+      }
+    }
+
+    return new MuiTableCell(columnDefinition.title!);
+  }
+
+  protected safeGetMaxWidth(index: number) {
     if (this.columnConfig.length - 1 >= index) {
       return this.columnConfig[index].maxWidth;
     }
 
     return 'unset';
-  }
-
-  get nestedLevelClass(): string {
-    return this.levelClassMap[this.nestedLevel] || '';
   }
 
   private setFactoryValueCell(columnDef: MuiTableResolvableColumnDefinition) {
@@ -103,15 +116,23 @@ export class MuiTableRowComponent implements OnChanges {
     this.cells.push(cellContent);
   }
 
-  isTextCell(cell: MuiTableCell): boolean {
+  protected isTextCell(cell: MuiTableCell): boolean {
     return cell.type === 'text';
   }
 
-  isBadgeCell(cell: MuiTableCell): boolean {
+  protected isBadgeCell(cell: MuiTableCell): boolean {
     return cell.type === 'badge';
   }
 
-  getBadgeCellStyle(cell: MuiBadgeTableCell) {
+  protected isSortCell(cell: MuiTableCell): boolean {
+    return cell.type === 'sort';
+  }
+
+  protected isDescendingCell(cell: MuiTableCell) {
+    return cell instanceof MuiSortTableCell ? cell.sortDirection === 'descending' : false;
+  }
+
+  protected getBadgeCellStyle(cell: MuiBadgeTableCell) {
     return cell.badgeStyle;
   }
 
@@ -132,5 +153,14 @@ export class MuiTableRowComponent implements OnChanges {
     const isAccordionRow = this.hasAccordionInTable && !this.canExpand && cellId === 0;
 
     return isAccordionRow || isHeaderWithAccrodionInTable || rowNested;
+  }
+
+  protected handleCellClick(cell: MuiTableCell) {
+    if (this.isSortCell(cell)) {
+      (cell as MuiSortTableCell).changeDirection();
+      this.onCellClick.emit(cell);
+    }
+
+    this.onCellClick.emit(cell);
   }
 }

@@ -1,9 +1,10 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { MuiTableBodyComponent } from '../mui-table-body/mui-table-body.component';
+import { MuiSortTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiTableHeadComponent } from '../mui-table-head/mui-table-head.component';
 import { MuiTableRowComponent } from '../mui-table-row/mui-table-row.component';
 import { MuiTableComponent } from './mui-table.component';
-import { MuiTableColumnDefinition } from './mui-table.config';
+import { MuiTableColumnDefinition, MuiTableResolvableColumnDefinition } from './mui-table.config';
 
 const meta: Meta<MuiTableComponent> = {
   title: 'Design System/Components/Table',
@@ -31,7 +32,7 @@ export const WithData: Story = {
       ...args,
       columns: [new MuiTableColumnDefinition('1', 'Колонка 1'), new MuiTableColumnDefinition('2', 'Колонка 2')],
       rows: [
-        ['', 'Первая строка 1 колонки', 'Второая строка 2 колонки'],
+        ['', 'Первая строка 1 колонки', 'Первая строка 2 колонки'],
         ['', 'Вторая строка 1 колонки', 'Вторая строка 2 колонки'],
         ['', 'Третья строка 1 колонки', 'Третья строка 2 колонки'],
         ['', 'Первая вложенная строка 1 колонки', 'Первая вложенная строка 2 колонки'],
@@ -52,6 +53,28 @@ export const WithData: Story = {
             </mui-table-row>
           </mui-table-row>
         </mui-table-body>
+      </mui-table>
+    `
+  })
+};
+
+export const SortHeader: Story = {
+  tags: ['core'],
+  args: {
+    dataLength: 1
+  },
+  render: args => ({
+    props: {
+      ...args,
+      columns: [
+        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('ascending', value), 'qwe', 'Заголовок 1'),
+        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('descending', value), 'qwe', 'Заголовок 2')
+      ],
+      rows: []
+    },
+    template: `
+      <mui-table [dataLength]="dataLength">
+        <mui-table-head [columns]="columns"></mui-table-head>
       </mui-table>
     `
   })
