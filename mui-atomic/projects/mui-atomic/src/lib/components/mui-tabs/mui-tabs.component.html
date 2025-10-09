@@ -1,0 +1,28 @@
+<nav aria-label="Навигация по вкладкам">
+  <ul class="items-list mui-flex mui-gap-1">
+    @for (tab of tabs(); track tab.id) {
+      <li class="item mui-p-block-end-1">
+        <button
+          #tabButton
+          class="button"
+          type="button"
+          [attr.aria-selected]="isActive(tab.id)"
+          [disabled]="tab.disabled"
+          (click)="selectTab(tab.id)"
+        >
+          {{ tab.label }}
+        </button>
+      </li>
+    }
+
+    <div class="underline" #underline></div>
+  </ul>
+</nav>
+
+@for (tab of tabs(); track tab.id) {
+  @if (isActive(tab.id)) {
+    <section>
+      <ng-container *ngTemplateOutlet="tab.template"></ng-container>
+    </section>
+  }
+}
