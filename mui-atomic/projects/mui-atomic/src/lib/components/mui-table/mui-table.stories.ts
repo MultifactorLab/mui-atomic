@@ -67,8 +67,8 @@ export const SortHeader: Story = {
     props: {
       ...args,
       columns: [
-        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('ascending', value), 'qwe', 'Заголовок 1'),
-        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('descending', value), 'qwe', 'Заголовок 2')
+        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('none', value), 'qwe', 'Заголовок 1'),
+        new MuiTableResolvableColumnDefinition((value: string) => new MuiSortTableCell('none', value), 'qwe', 'Заголовок 2')
       ],
       rows: []
     },

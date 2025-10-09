@@ -2,7 +2,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, OnChanges, Output, signal, WritableSignal } from '@angular/core';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
 import { ChevronMuiIconComponent } from '../mui-icon';
-import { MuiBadgeTableCell, MuiSortTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
+import { MuiSortTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
 import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
 
@@ -33,6 +33,7 @@ export class MuiTableRowComponent implements OnChanges {
 
   protected opened: WritableSignal<boolean> = signal<boolean>(false);
   protected cells: MuiTableCell[] = [];
+  protected readonly TableCellLink = MuiTableCell;
   private readonly levelClassMap: Record<NestedLevel, string> = {
     0: '',
     1: 'nested-level-1',
@@ -70,10 +71,12 @@ export class MuiTableRowComponent implements OnChanges {
           this.setCell(index.toString());
           continue;
         }
-        if (columnDef instanceof MuiTableResolvableColumnDefinition) {
+
+        if (columnDef instanceof MuiTableResolvableColumnDefinition && !MuiTableCell.isSortCell(columnDef.cellFactory(columnDef.title!))) {
           this.setFactoryValueCell(columnDef);
           continue;
         }
+
         const modelName = this.columnConfig[i].modelName!;
         this.setCell(this.source[modelName]);
       }
@@ -116,26 +119,6 @@ export class MuiTableRowComponent implements OnChanges {
     this.cells.push(cellContent);
   }
 
-  protected isTextCell(cell: MuiTableCell): boolean {
-    return cell.type === 'text';
-  }
-
-  protected isBadgeCell(cell: MuiTableCell): boolean {
-    return cell.type === 'badge';
-  }
-
-  protected isSortCell(cell: MuiTableCell): boolean {
-    return cell.type === 'sort';
-  }
-
-  protected isDescendingCell(cell: MuiTableCell) {
-    return cell instanceof MuiSortTableCell ? cell.sortDirection === 'descending' : false;
-  }
-
-  protected getBadgeCellStyle(cell: MuiBadgeTableCell) {
-    return cell.badgeStyle;
-  }
-
   private getPageIndex() {
     if (this.rowIndex === null) return '';
 
@@ -156,11 +139,22 @@ export class MuiTableRowComponent implements OnChanges {
   }
 
   protected handleCellClick(cell: MuiTableCell) {
-    if (this.isSortCell(cell)) {
-      (cell as MuiSortTableCell).changeDirection();
+    if (MuiTableCell.isSortCell(cell)) {
+      cell.changeDirection();
+      this.manageSortCellsDirection(cell);
       this.onCellClick.emit(cell);
+
+      return;
     }
 
     this.onCellClick.emit(cell);
+  }
+
+  private manageSortCellsDirection(cell: MuiSortTableCell) {
+    this.cells.map(c => {
+      if (MuiTableCell.isSortCell(c) && c.id !== cell.id) {
+        c.sortDirection = 'none';
+      }
+    });
   }
 }

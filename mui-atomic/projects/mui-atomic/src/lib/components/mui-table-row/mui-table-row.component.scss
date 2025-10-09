@@ -69,10 +69,10 @@
 }
 
 .chevron-icon {
-  transform: rotate(0);
+  transform: rotate(180deg);
   transition: transform 0.3s ease-out;
 
   &-descending {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
   }
 }

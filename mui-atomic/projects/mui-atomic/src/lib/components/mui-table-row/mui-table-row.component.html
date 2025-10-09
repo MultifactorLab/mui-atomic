@@ -9,18 +9,30 @@
       [class.offset-row]="needsMoveFirstCell(i)"
       (click)="handleCellClick(cell)"
     >
-      @if (isBadgeCell(cell)) {
-        <mui-badge [style]="getBadgeCellStyle(cell)" [text]="cell.content!"></mui-badge>
+      @if (TableCellLink.isBadgeCell(cell)) {
+        <mui-badge [style]="cell.badgeStyle" [text]="cell.content!"></mui-badge>
       }
 
-      @if (isTextCell(cell)) {
+      @if (TableCellLink.isTextCell(cell)) {
         {{ cell.content }}
       }
 
-      @if (isSortCell(cell)) {
+      @if (TableCellLink.isSortCell(cell)) {
         <div class="mui-flex mui-gap-1 mui-align-items-center mui-justify-content-center">
-          <mui-chevron-icon class="chevron-icon" [class.chevron-icon-descending]="isDescendingCell(cell)"></mui-chevron-icon>
           <span>{{ cell.content }}</span>
+
+          @if (cell.sortDirection === 'none') {
+            <div class="mui-flex mui-flex-column mui-align-items-center mui-justify-content-center">
+              <mui-chevron-icon class="chevron-icon" [iconSize]="'S'"></mui-chevron-icon>
+              <mui-chevron-icon class="chevron-icon chevron-icon-descending" [iconSize]="'S'"></mui-chevron-icon>
+            </div>
+          } @else {
+            <mui-chevron-icon
+              class="chevron-icon"
+              [class.chevron-icon-descending]="cell.sortDirection === 'descending'"
+              [iconSize]="'S'"
+            ></mui-chevron-icon>
+          }
         </div>
       }
     </mui-table-cell>

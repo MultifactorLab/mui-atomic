@@ -1,5 +1,5 @@
 export type CellType = 'text' | 'badge' | 'sort';
-export type SortDirection = 'descending' | 'ascending';
+export type SortDirection = 'descending' | 'ascending' | 'none';
 
 export class MuiTableCell {
   constructor(
@@ -7,6 +7,18 @@ export class MuiTableCell {
     public type: CellType = 'text',
     public id = Date.now().toString(36) + Math.random().toString(36).substr(2)
   ) {}
+
+  static isTextCell(cell: MuiTableCell): boolean {
+    return cell.type === 'text';
+  }
+
+  static isBadgeCell(cell: MuiTableCell): cell is MuiBadgeTableCell {
+    return cell.type === 'badge';
+  }
+
+  static isSortCell(cell: MuiTableCell): cell is MuiSortTableCell {
+    return cell.type === 'sort';
+  }
 }
 
 export class MuiBadgeTableCell extends MuiTableCell {
@@ -20,13 +32,15 @@ export class MuiBadgeTableCell extends MuiTableCell {
 
 export class MuiSortTableCell extends MuiTableCell {
   constructor(
-    public sortDirection: SortDirection = 'ascending',
+    public sortDirection: SortDirection = 'none',
     content?: string
   ) {
     super(content, 'sort');
   }
 
   changeDirection() {
-    this.sortDirection = this.sortDirection === 'ascending' ? 'descending' : 'ascending';
+    const order: SortDirection[] = ['none', 'descending', 'ascending'];
+    const nextIndex = (order.indexOf(this.sortDirection) + 1) % order.length;
+    this.sortDirection = order[nextIndex];
   }
 }
