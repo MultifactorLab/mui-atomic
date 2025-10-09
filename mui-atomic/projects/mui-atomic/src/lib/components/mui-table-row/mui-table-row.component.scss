@@ -13,13 +13,15 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  border-top: 1px solid var(--mui-border-normal);
   cursor: pointer;
+  user-select: none;
+}
 
-  &:not(.header-row) {
-    border-top: 1px solid var(--mui-border-normal);
-  }
+.not-header-row {
+  user-select: initial;
 
-  &:hover:not(.header-row) {
+  &:hover {
     background-color: var(--mui-background-base-alt);
   }
 }
@@ -63,5 +65,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.chevron-icon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-out;
+
+  &-descending {
+    transform: rotate(0deg);
   }
 }

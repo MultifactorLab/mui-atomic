@@ -2,7 +2,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, OnChanges, Output, signal, WritableSignal } from '@angular/core';
 import { MuiBadgeComponent } from '../mui-badge/mui-badge.component';
 import { ChevronMuiIconComponent } from '../mui-icon';
-import { MuiBadgeTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
+import { MuiSortTableCell, MuiTableCell } from '../mui-table-cell/mui-table-cell';
 import { MuiTableCellComponent } from '../mui-table-cell/mui-table-cell.component';
 import { MuiTableColumnDefinition, MuiTableIndexColumnDefinition, MuiTableResolvableColumnDefinition } from '../mui-table/mui-table.config';
 
@@ -15,7 +15,6 @@ export type NestedLevel = 0 | 1 | 2;
 
 @Component({
   selector: 'mui-table-row',
-  standalone: true,
   templateUrl: './mui-table-row.component.html',
   imports: [MuiTableCellComponent, NgStyle, MuiBadgeComponent, NgClass, ChevronMuiIconComponent],
   styleUrl: './mui-table-row.component.scss'
@@ -30,10 +29,11 @@ export class MuiTableRowComponent implements OnChanges {
   @Input() currentPage: number = 1;
   @Input() columnConfig: MuiTableColumnDefinition[] = [];
   @Input() nestedLevel: NestedLevel = 0;
-  @Output() onRowClick: EventEmitter<any> = new EventEmitter();
+  @Output() onCellClick: EventEmitter<MuiTableCell> = new EventEmitter();
 
   protected opened: WritableSignal<boolean> = signal<boolean>(false);
   protected cells: MuiTableCell[] = [];
+  protected readonly TableCellLink = MuiTableCell;
   private readonly levelClassMap: Record<NestedLevel, string> = {
     0: '',
     1: 'nested-level-1',
@@ -52,11 +52,15 @@ export class MuiTableRowComponent implements OnChanges {
     this.generateCells();
   }
 
+  get nestedLevelClass(): string {
+    return this.levelClassMap[this.nestedLevel] || '';
+  }
+
   private generateCells() {
     this.cells = [];
 
     if (this.isHeaderRow) {
-      this.cells = this.columnConfig.map(x => new MuiTableCell(x.title!));
+      this.cells = this.columnConfig.map(columnDef => this.generateColumnCell(columnDef));
     } else {
       const length = this.columnConfig.length;
       for (let i = 0; i < length; i++) {
@@ -67,10 +71,12 @@ export class MuiTableRowComponent implements OnChanges {
           this.setCell(index.toString());
           continue;
         }
-        if (columnDef instanceof MuiTableResolvableColumnDefinition) {
+
+        if (columnDef instanceof MuiTableResolvableColumnDefinition && !MuiTableCell.isSortCell(columnDef.cellFactory(columnDef.title!))) {
           this.setFactoryValueCell(columnDef);
           continue;
         }
+
         const modelName = this.columnConfig[i].modelName!;
         this.setCell(this.source[modelName]);
       }
@@ -79,16 +85,26 @@ export class MuiTableRowComponent implements OnChanges {
     this.cells = this.cells.slice();
   }
 
-  safeGetMaxWidth(index: number) {
+  private generateColumnCell(columnDefinition: MuiTableColumnDefinition) {
+    const isColumnDefinition = columnDefinition instanceof MuiTableResolvableColumnDefinition;
+
+    if (isColumnDefinition) {
+      const cell = columnDefinition.cellFactory(columnDefinition.title ?? '');
+
+      if (isColumnDefinition && cell.type === 'sort') {
+        return cell;
+      }
+    }
+
+    return new MuiTableCell(columnDefinition.title!);
+  }
+
+  protected safeGetMaxWidth(index: number) {
     if (this.columnConfig.length - 1 >= index) {
       return this.columnConfig[index].maxWidth;
     }
 
     return 'unset';
-  }
-
-  get nestedLevelClass(): string {
-    return this.levelClassMap[this.nestedLevel] || '';
   }
 
   private setFactoryValueCell(columnDef: MuiTableResolvableColumnDefinition) {
@@ -101,18 +117,6 @@ export class MuiTableRowComponent implements OnChanges {
   private setCell(value: string) {
     const cellContent = new MuiTableCell(value);
     this.cells.push(cellContent);
-  }
-
-  isTextCell(cell: MuiTableCell): boolean {
-    return cell.type === 'text';
-  }
-
-  isBadgeCell(cell: MuiTableCell): boolean {
-    return cell.type === 'badge';
-  }
-
-  getBadgeCellStyle(cell: MuiBadgeTableCell) {
-    return cell.badgeStyle;
   }
 
   private getPageIndex() {
@@ -132,5 +136,25 @@ export class MuiTableRowComponent implements OnChanges {
     const isAccordionRow = this.hasAccordionInTable && !this.canExpand && cellId === 0;
 
     return isAccordionRow || isHeaderWithAccrodionInTable || rowNested;
+  }
+
+  protected handleCellClick(cell: MuiTableCell) {
+    if (MuiTableCell.isSortCell(cell)) {
+      cell.changeDirection();
+      this.manageSortCellsDirection(cell);
+      this.onCellClick.emit(cell);
+
+      return;
+    }
+
+    this.onCellClick.emit(cell);
+  }
+
+  private manageSortCellsDirection(cell: MuiSortTableCell) {
+    this.cells.map(c => {
+      if (MuiTableCell.isSortCell(c) && c.id !== cell.id) {
+        c.sortDirection = 'none';
+      }
+    });
   }
 }

@@ -1,2 +1,9 @@
-<mui-table-row class="header-row" [hasAccordionInTable]="hasAccordionInTable" [isHeaderRow]="true" [columnConfig]="columns" [source]="null">
+<mui-table-row
+  class="header-row"
+  [hasAccordionInTable]="hasAccordionInTable"
+  [isHeaderRow]="true"
+  [columnConfig]="columns"
+  [source]="null"
+  (onCellClick)="onCellClick.emit($event)"
+>
 </mui-table-row>
