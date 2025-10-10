@@ -96,6 +96,18 @@ $mui-half-block-sizes: (
   .mui-p-block-start-#{$code} {
     padding-block-start: $size;
   }
+
+  .mui-p-block-end-#{$code} {
+    padding-block-end: $size;
+  }
+
+  .mui-p-inline-start-#{$code} {
+    padding-inline-start: $size;
+  }
+
+  .mui-p-inline-end-#{$code} {
+    padding-inline-end: $size;
+  }
 }
 
 .mui-mis-auto {
