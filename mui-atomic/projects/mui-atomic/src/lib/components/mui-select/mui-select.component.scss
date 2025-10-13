@@ -3,7 +3,6 @@
 @use 'sass:map';
 
 select {
-  max-width: 300px;
   font-size: 1em;
   appearance: none;
   background: transparent;
@@ -13,13 +12,14 @@ select {
   line-height: 19.2px;
   padding: 0 10px;
   color: var(--mui-text-secondary);
-  border: 1px solid #ced4da;
+  border: 1px solid var(--mui-border-normal);
   border-radius: 0.5em;
   cursor: pointer;
-  transition:
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
-  font-family: Inter, sans-serif;
+  transition: border-color 0.3s ease-out;
+
+  &:hover {
+    border: 1px solid var(--mui-border-hover);
+  }
 
   &:focus-visible {
     border: 1px solid var(--mui-border-normal);
@@ -54,7 +54,6 @@ select {
   border-radius: 0.5em;
   background-color: var(--mui-background-base);
   width: 100%;
-  max-width: 350px;
   overflow: auto;
   max-height: 300px;
   scroll-behavior: smooth;

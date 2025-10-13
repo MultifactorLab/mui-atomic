@@ -4,17 +4,17 @@
     class="mui-my-half"
     [ngClass]="{ 'height-normal': heightStyle === 'normal', 'height-half-size': heightStyle === 'half-size' }"
     (mousedown)="$event.preventDefault()"
-    (click)="isPanelOpened = !isPanelOpened"
+    (click)="changePanelVisibility()"
     name="select"
   >
     <option value="header" selected>{{ currentSelectedItem?.title || 'Выберите из списка' }}</option>
   </select>
 
-  @if (options.length && isPanelOpened) {
-    <div class="options-list-container" [class.rotated-panel-container]="showPanelOnTop">
+  @if (options.length && panelOpened) {
+    <div class="options-list-container" [class.rotated-panel-container]="panelOnTop">
       <div class="options-list mui-flex mui-flex-column">
         @for (item of options; track item.id) {
-          <mui-select-option [class.rotated]="showPanelOnTop" [item]="item" (click)="selectItem(item)"> </mui-select-option>
+          <mui-select-option [class.rotated]="panelOnTop" [item]="item" (click)="selectItem(item)"> </mui-select-option>
         }
       </div>
     </div>
