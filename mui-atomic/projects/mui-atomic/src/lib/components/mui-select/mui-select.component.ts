@@ -1,35 +1,47 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { NgClass } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, fromEvent } from 'rxjs';
 import { MuiSelectOptionComponent } from '../mui-select-option/mui-select-option.component';
 import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
-import { NgClass } from '@angular/common';
-import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mui-select',
-  standalone: true,
   templateUrl: './mui-select.component.html',
   imports: [MuiSelectOptionComponent, NgClass],
-  styleUrl: './mui-select.component.scss'
+  styleUrl: './mui-select.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MuiSelectComponent implements OnInit, OnDestroy {
-  isPanelOpened: boolean = false;
+export class MuiSelectComponent implements OnInit {
   @Input() currentSelectedItem?: MuiSelectableItem;
   @Input() heightStyle: 'normal' | 'half-size' = 'normal';
-  @Output() onSelectedItemChange = new EventEmitter<MuiSelectableItem>();
-  @Input() title!: string;
+  @Input() title: string = '';
   @Input() options: MuiSelectableItem[] = [];
+
+  @Output() onSelectedItemChange = new EventEmitter<MuiSelectableItem>();
 
   @ViewChild('selectContainer') private panelContainer: ElementRef<HTMLDivElement> | null = null;
 
-  private unsubscribe: Subject<void> = new Subject<void>();
+  protected panelOpened: boolean = false;
+  protected panelOnTop: boolean = false;
+
+  protected readonly cdr = inject(ChangeDetectorRef);
+  protected readonly destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.detectCloseOnOutsideClick();
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
   /**
@@ -37,14 +49,17 @@ export class MuiSelectComponent implements OnInit, OnDestroy {
    */
   detectCloseOnOutsideClick() {
     fromEvent(document, 'click')
-      .pipe(filter(this.elementIsOutside), takeUntil(this.unsubscribe))
-      .subscribe(() => (this.isPanelOpened = false));
+      .pipe(filter(this.elementIsOutside), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.panelOpened = false;
+        this.cdr.markForCheck();
+      });
   }
 
   selectItem(item: MuiSelectableItem) {
     item.selected = !item.selected;
     this.currentSelectedItem = item;
-    this.isPanelOpened = false;
+    this.panelOpened = false;
     this.onSelectedItemChange.emit(this.currentSelectedItem);
   }
 
@@ -53,12 +68,22 @@ export class MuiSelectComponent implements OnInit, OnDestroy {
     return target.localName !== 'select' && target.localName !== 'mui-select-option';
   }
 
-  protected get showPanelOnTop(): boolean {
+  private calcPanelPlace() {
     if (this.panelContainer) {
       const element = this.panelContainer.nativeElement;
-      return window.innerHeight - element.getBoundingClientRect().bottom < element.scrollHeight;
+      this.panelOnTop = window.innerHeight - element.getBoundingClientRect().bottom < element.scrollHeight;
+    } else {
+      this.panelOnTop = false;
     }
 
-    return false;
+    this.cdr.markForCheck();
+  }
+
+  protected changePanelVisibility() {
+    this.panelOpened = !this.panelOpened;
+
+    if (this.panelOpened) {
+      this.calcPanelPlace();
+    }
   }
 }

@@ -2,17 +2,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
+  effect,
   ElementRef,
+  inject,
   input,
-  OnDestroy,
   OnInit,
   output,
   signal,
   ViewChild
 } from '@angular/core';
-import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, fromEvent } from 'rxjs';
 import { MuiSelectOptionComponent } from '../mui-select-option/mui-select-option.component';
-import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
+import { MuiSelectableItem } from '../mui-select-option/mui-selectable-item';
 
 @Component({
   selector: 'mui-multiselect',
@@ -22,7 +25,7 @@ import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
   styleUrl: './mui-multiselect.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MuiMultiselectComponent implements OnInit, OnDestroy {
+export class MuiMultiselectComponent implements OnInit {
   title = input<string>('');
   options = input<MuiSelectableItem[]>([]);
   onOptionChange = output<MuiSelectableItem[]>();
@@ -31,16 +34,21 @@ export class MuiMultiselectComponent implements OnInit, OnDestroy {
 
   protected selectedOptions: MuiSelectableItem[] = [];
   protected panelOpened = signal(false);
+  protected panelOnTop: boolean = false;
   protected selectMenuVisible = computed(() => this.panelOpened() && this.options().length > 0);
-  private unsubscribe: Subject<void> = new Subject<void>();
+
+  protected readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    effect(() => {
+      if (this.panelOpened()) {
+        this.calcPanelPlace();
+      }
+    });
+  }
 
   ngOnInit() {
     this.detectCloseOnOutsideClick();
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
   }
 
   get placeholder(): string {
@@ -63,7 +71,7 @@ export class MuiMultiselectComponent implements OnInit, OnDestroy {
    */
   protected detectCloseOnOutsideClick() {
     fromEvent(document, 'click')
-      .pipe(filter(this.elementIsOutside), takeUntil(this.unsubscribe))
+      .pipe(filter(this.elementIsOutside), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.panelOpened.set(false));
   }
 
@@ -95,12 +103,12 @@ export class MuiMultiselectComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  protected get showPanelOnTop(): boolean {
+  private calcPanelPlace() {
     if (this.panelContainer) {
       const element = this.panelContainer.nativeElement;
-      return window.innerHeight - element.getBoundingClientRect().bottom < element.scrollHeight;
+      this.panelOnTop = window.innerHeight - element.getBoundingClientRect().bottom < element.scrollHeight;
+    } else {
+      this.panelOnTop = false;
     }
-
-    return false;
   }
 }
